@@ -21,7 +21,7 @@ marks = 100
 full_name = f"Hello, {first_name} {last_name}. \n\tYou got {marks} marks."
 print(full_name.title())
 
-# strip
+# stripping whitespace
 name = "             itvaya                      haodfhoawihf        "
 print(name.strip())
 print(name.lstrip())
