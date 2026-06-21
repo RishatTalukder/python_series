@@ -33,18 +33,38 @@ print(sum(empty_list))
 nums = [i**2 for i in range(1, 101, 2)]
 print(nums)
 
+# ==========================
 # HOMEWORK
+# ==========================
 
-# 1. Use a for loop to print the numbers from 1 to 20, inclusive.
+# 1. Use range() to print numbers from 1 to 30 using a for loop.
+#    Try printing each number on a new line.
 
-# 2. Make a list of the numbers from one to one million, and then use a for loop to print the numbers. (If the output is taking too long, stop it by pressing ctrl-C or by closing the output window.)
+# 2. Create a list using range() that contains numbers from 1 to 500.
+#    Print only the first 10 and last 10 values to check it.
 
-# 3. Make a list of the numbers from one to one million, and then use min() and max() to make sure your list actually starts at one and ends at one million. Also, use the sum() function to see how quickly Python can add a million numbers.
+# 3. Use range() to generate numbers from 1 to 100.
+#    Then use:
+#    - min()
+#    - max()
+#    - sum()
+#    Print all results clearly.
 
-# 4. Use the third argument of the range() function to make a list of the odd numbers from 1 to 20. Use a for loop to print each number.
+# 4. Use range() to generate all even numbers from 1 to 50.
+#    Store them in a list and print the list.
 
-# 5. Make a list of the multiples of 3 from 3 to 30. Use a for loop to print the numbers in your list.
+# 5. Use range() to generate all odd numbers from 1 to 50.
+#    Print each number using a for loop.
 
-# 6. A number raised to the third power is called a cube. For example, the cube of 2 is written as 2**3 in Python. Make a list of the first 10 cubes (that is, the cube of each integer from 1 through 10), and use a for loop to print out the value of each cube.
+# 6. Create a list of the first 10 square numbers using:
+#    - a for loop OR list comprehension
+#    Example: 1^2, 2^2, 3^2, ...
 
-# 7. Use a list comprehension to generate a list of the first 10 cubes.
+# 7. Create a list of the first 10 cube numbers using list comprehension.
+#    Then print each value using a for loop.
+
+# 8. Challenge:
+#    Create a list of numbers from 1 to 100.
+#    Then create a second list that contains only numbers
+#    that are divisible by 3.
+#    Print both lists.

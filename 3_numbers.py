@@ -35,15 +35,35 @@ print(num, num2, num3)
 num = 1_000_000_000
 print(num)
 
+# ==========================
 # HOMEWORK
+# ==========================
 
-# Write addition, subtraction, multiplication, and division
-# operations that each result in the number 8. Be sure to enclose your operations
-# in print() calls to see the results. You should create four lines that look like this:
-# print(5+3)
-# Your output should simply be four lines with the number 8 appearing once
-# on each line.
+# 1. Create two number variables and print the result of:
+#    - addition (+)
+#    - subtraction (-)
+#    - multiplication (*)
+#    - division (/)
 
-# Use a variable to represent your favorite number. Then,
-# using that variable, create a message that reveals your favorite number. 
-# Print that message.
+# 2. Use the power operator (**) to calculate:
+#    - 2 to the power of 5
+#    - 10 to the power of 3
+
+# 3. Write two mathematical expressions to observe
+#    operator precedence:
+#    - one without parentheses
+#    - one with parentheses
+#    Compare the outputs.
+
+# 4. Create a float variable and perform a few calculations with it.
+#    Try multiplying 0.1 by different numbers and see the results.
+
+# 5. Create three variables in a single line and print them
+#    in one print() statement.
+
+# 6. Create a large number using underscores (_) to improve
+#    readability and print it.
+
+# 7. Store your favorite number in a variable and use an
+#    f-string to print a message like:
+#    "My favorite number is 7!"

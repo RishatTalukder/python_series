@@ -34,20 +34,45 @@ print(item_count)
 # out of bounds error
 print(bikes[-4])
 
+# ==========================
 # HOMEWORK
+# ==========================
 
-# 1. Seeing the World: Think of at least five places in the world you’d like to visit.
-#   •Store the locations in a list. Make sure the list is not in alphabetical order.
-#   •Print your list in its original order. Don’t worry about printing the list neatly, just print it as a raw Python list.
-#   •Use sorted() to print your list in alphabetical order without modifying the actual list.
-#   •Show that your list is still in its original order by printing it.
-#   •Use sorted() to print your list in reverse alphabetical order without changing the order of the original list.
-#   •Show that your list is still in its original order by printing it again.
-#   •Use reverse() to change the order of your list. Print the list to show that its order has changed.
-#   •Use reverse() to change the order of your list again. Print the list to show it’s back to its original order.
-#   •Use sort() to change your list so it’s stored in alphabetical order. Print the list to show that its order has been changed.
-#   •Use sort() to change your list so it’s stored in reverse alphabetical order. Print the list to show that its order has changed.
+# 1. Create a list of at least six numbers in random order.
+#    - Print the original list.
+#    - Use sorted() and print the result.
+#    - Print the original list again to verify that it was not changed.
 
-# 2. Working with one of the programs from the previous exercise in the 5_lists_operations.py file. use len() to print a message indicating the number of people you are inviting to dinner.
+# 2. Take the same list and:
+#    - Use sorted(reverse=True)
+#    - Print the result in descending order.
+#    - Print the original list again.
 
-# 3. Think of something you could store in a list. For example, you could make a list of mountains, rivers, countries, cities, languages, or anything else you’d like. Write a program that creates a list containing these items and then uses each function introduced in this chapter at least once.
+# 3. Permanently sort the list using sort().
+#    Print the list after sorting.
+
+# 4. Permanently sort the list in descending order
+#    using sort(reverse=True) and print the result.
+
+# 5. Create a list of at least five strings
+#    (for example: countries, games, or programming languages).
+#    Sort the list alphabetically and then in reverse order.
+
+# 6. Create another list and use reverse() to reverse
+#    the current order of the items.
+#    Print the list before and after reversing.
+
+# 7. Use len() to find the total number of items in a list.
+#    Print a message like:
+#    "This list contains 6 items."
+
+# 8. Challenge:
+#    Create a list of your favorite movies, books, or cities.
+#    Use every function and method introduced in this lesson:
+#    - sorted()
+#    - sort()
+#    - sort(reverse=True)
+#    - reverse()
+#    - len()
+#    Print the list after every operation and observe
+#    which ones modify the original list and which ones don't.

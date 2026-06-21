@@ -20,12 +20,40 @@ for num in nums:
     
     print(num*2)
     
+# ==========================
 # HOMEWORK
+# ==========================
 
-# 1: Think of at least three kinds of your favorite pizza. Store these pizza names in a list, and then use a for loop to print the name of each pizza.
-# • Modify your for loop to print a sentence using the name of the pizza instead of printing just the name of the pizza. For each pizza you should have one line of output containing a simple statement like I like pepperoni pizza.
-# • Add a line at the end of your program, outside the for loop, that states how much you like pizza. The output should consist of three or more lines about the kinds of pizza you like and then an additional sentence, such as I really love pizza!
+# 1. Create a list of at least five numbers.
+#    Use a for loop to:
+#    - print each number
+#    - print each number multiplied by 2
 
-# 2: Think of at least three different animals that have a common characteristic. Store the names of these animals in a list, and then use a for loop to print out the name of each animal.
-# • Modify your program to print a statement about each animal, such as A dog would make a great pet.
-# • Add a line at the end of your program stating what these animals have in common. You could print a sentence such as Any of these animals would make a great pet!
+# 2. Modify the loop so that for each number you also print:
+#    - the square of the number (num * num)
+#    - a message like "Processing number X"
+
+# 3. Create a nested loop:
+#    - outer loop: a list of at least 3 items
+#    - inner loop: another list of at least 3 items
+#    Print something inside both loops to clearly show how nesting works.
+
+# 4. Experiment with indentation:
+#    - Try adding a print statement outside the loop
+#    - Then move it inside the loop
+#    - Observe how the output changes
+
+# 5. Create a list of names.
+#    Use a for loop to:
+#    - greet each person
+#    - print a second line for each person
+#    Make sure both lines stay inside the loop.
+
+# 6. Add a final message outside the loop:
+#    Example: "Loop has finished running."
+
+# 7. Challenge:
+#    Create a nested loop where:
+#    - outer loop goes through a list of numbers
+#    - inner loop goes through the same list
+#    Print both values in each iteration to understand how nested loops behave.

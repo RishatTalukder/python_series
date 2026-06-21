@@ -34,34 +34,45 @@ print(pop_value)
 bikes.remove('Ducati')
 print(bikes)
 
-
+# ==========================
 # HOMEWORK
+# ==========================
 
-# 1. If you could invite anyone, living or deceased, to dinner, who
-# would you invite? Make a list that includes at least three people you’d like to
-# invite to dinner. Then use your list to print a message to each person, inviting
-# them to dinner.
+# 1. Create a list of at least four of your favorite games,
+#    movies, or programming languages.
+#    Print the list before making any changes.
 
-# 2. You just heard that one of your guests can’t make the
-# dinner, so you need to send out a new set of invitations. You’ll have to think of
-# someone else to invite.
-#   •Start with your program from Exercise 1. Add a print() call at the end
-#   of your program stating the name of the guest who can’t make it.
-#   •Modify your list, replacing the name of the guest who can’t make it with
-#   the name of the new person you are inviting.
-#   •Print a second set of invitation messages, one for each person who is still
-#   in your list.
+# 2. Replace the first item in the list with a new value
+#    using indexing, then print the updated list.
 
-# 3. You just found a bigger dinner table, so now more space is available. Think of three more guests to invite to dinner.
-#   •Start with your program from Exercise 1 or Exercise 2. Add a print() call to the end of your program informing people that you found a biggerdinner table.
-#   •Use insert() to add one new guest to the beginning of your list.
-#   •Use insert() to add one new guest to the middle of your list.
-#   •Use append() to add one new guest to the end of your list.
-#   •Print a new set of invitation messages, one for each person in your list.
+# 3. Add two new items to the end of the list using append().
+#    Print the list after each addition.
 
-# 4. You just found out that your new dinner table won’t arrive in time for the dinner, and you have space for only two guests.
-#   •Start with your program from Exercise 3. Add a new line that prints a message saying that you can invite only two people for dinner.
-#   •Use pop() to remove guests from your list one at a time until only two names remain in your list. Each time you pop a name from your list, print a message to that person letting them know you’re sorry you can’t invite them to dinner.
-#   •Print a message to each of the two people still on your list, letting them
-# know they’re still invited.
-#   •Use del to remove the last two names from your list, so you have an empty list. Print your list to make sure you actually have an empty list at the end of your program.
+# 4. Insert a new item at the beginning or middle of the list
+#    using insert(), then print the result.
+
+# 5. Remove an item using del and print the updated list.
+
+# 6. Use pop() to remove the last item from the list.
+#    Store the removed value in a variable and print:
+#    - the updated list
+#    - the removed value
+
+# 7. Use pop(index) to remove an item from a specific position.
+#    Again, store the removed value in a variable and print both
+#    the list and the removed item.
+
+# 8. Add a duplicate value to the list and then remove one
+#    occurrence of it using remove().
+#    Print the final list.
+
+# 9. Challenge:
+#    Create a list with at least five items and perform all of
+#    the following operations in order:
+#    - append()
+#    - insert()
+#    - del
+#    - pop()
+#    - remove()
+#    Print the list after every operation so you can clearly
+#    see how it changes.

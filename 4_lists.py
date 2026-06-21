@@ -23,17 +23,30 @@ friend = names[1]
 # You have to understand the datatype of that value in the list
 print(friend.upper())
 
+# ==========================
 # HOMEWORK
+# ==========================
 
-# 1. Store the names of a few of your friends in a list called names. Print
-# each person’s name by accessing each element in the list, one at a time.
+# 1. Create a list containing at least five of your favorite foods.
+#    Print the entire list, then print the first, middle, and last item
+#    using indexing.
 
-# 2. Start with the list you used in Exercise 1, but instead of just
-# printing each person’s name, print a message to them. The text of each mes-
-# sage should be the same, but each message should be personalized with the
-# person’s name.
+# 2. Create a list of your friends' names.
+#    Access each name one by one and print it on a separate line.
 
-# 3. Think of your favorite mode of transportation, such as a
-# motorcycle or a car, and make a list that stores several examples. Use your list
-# to print a series of statements about these items, such as “I would like to own a
-# Honda motorcycle.”
+# 3. Pick one name from your friends list, store it in a new variable,
+#    and print it in UPPERCASE using a string method.
+
+# 4. Create a list of your favorite programming languages or games.
+#    Print a short sentence using each item, for example:
+#    "I enjoy learning Python."
+#    "I enjoy learning JavaScript."
+
+# 5. Create a list that contains different data types
+#    (for example: a string, an integer, and a float).
+#    Print the list and then access each value individually.
+
+# 6. Challenge:
+#    Create a list of three movie or book titles.
+#    Access one of them, store it in a variable,
+#    and print it in Title Case using a string method.
