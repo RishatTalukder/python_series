@@ -1,36 +1,128 @@
-# names = ['rishat', 'shagor', 'Itvaya']
+# ==========================
+# LOOPING THROUGH A DICTIONARY
+# ==========================
 
-# for i in names:
-#     print(i)
-    
-names = {
-    'rishat' : 32,
-    'shagor' : 69,
-    'itvaya' : 420
+student_marks = {
+    "rishat": 32,
+    "shagor": 69,
+    "itvaya": 420
 }
 
-for i in names:
-    print(names[i])
+for student in student_marks:
+    print(student)
     
-    
-fav_lang = {
-    'rishat' : 'python',
-    'shagor' : 'c++',
-    'itvaya' : 'kotlin'
+# ==========================
+# ACCESSING VALUES INSIDE A LOOP
+# ==========================
+
+student_marks = {
+    "rishat": 32,
+    "shagor": 69,
+    "itvaya": 420
 }
 
-for i in fav_lang.keys():
-    print(f"{i.title()} loves, {fav_lang[i].title()}")
+for student in student_marks:
+    print(f"{student.title()} scored {student_marks[student]}")
     
-print(fav_lang.values())
-print(fav_lang.items())
+# ==========================
+# USING keys()
+# ==========================
 
-for key, val in fav_lang.items():
-    print(f"{key.title()} likes, {val.title()}")
+favorite_languages = {
+    "rishat": "python",
+    "shagor": "c++",
+    "itvaya": "kotlin"
+}
+
+for name in favorite_languages.keys():
+    print(name.title())
     
+# ==========================
+# USING values()
+# ==========================
+
+favorite_languages = {
+    "rishat": "python",
+    "shagor": "c++",
+    "itvaya": "kotlin"
+}
+
+for language in favorite_languages.values():
+    print(language.title())
     
-# dummy_tuple = (10,13)
+# ==========================
+# USING items()
+# ==========================
 
-# x, y, z = (50,75, 832)
+favorite_languages = {
+    "rishat": "python",
+    "shagor": "c++",
+    "itvaya": "kotlin"
+}
 
-# print(x, y, z)
+for item in favorite_languages.items():
+    print(item)
+    
+# ==========================
+# TUPLE UNPACKING
+# ==========================
+
+person = ("Rishat", 25)
+
+name, age = person
+
+print(name)
+print(age)
+
+# ==========================
+# items() WITH UNPACKING
+# ==========================
+
+favorite_languages = {
+    "rishat": "python",
+    "shagor": "c++",
+    "itvaya": "kotlin"
+}
+
+for name, language in favorite_languages.items():
+    print(
+        f"{name.title()} likes {language.title()}"
+    )
+    
+# ==========================
+# HOMEWORK
+# ==========================
+
+# 1. Create a dictionary containing at least five
+#    students and their marks.
+#    Loop through the dictionary and print:
+#    "<name> scored <marks>"
+
+# 2. Create a dictionary of your favorite games,
+#    movies, or programming languages.
+#    Use keys() to print only the keys.
+
+# 3. Using the same dictionary,
+#    use values() to print only the values.
+
+# 4. Use items() to print both keys and values
+#    in a nicely formatted sentence.
+
+# 5. Create a tuple containing:
+#    - your name
+#    - your age
+#    Unpack the tuple into two variables and print them.
+
+# 6. Create a dictionary containing at least
+#    four countries and their capitals.
+#    Use items() and tuple unpacking to print:
+#    "The capital of Bangladesh is Dhaka."
+
+# 7. Challenge:
+#    Create a dictionary of at least five friends
+#    and their favorite programming languages.
+#
+#    Print:
+#    - all names using keys()
+#    - all languages using values()
+#    - complete sentences using items()
