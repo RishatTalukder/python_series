@@ -12,3 +12,4 @@ def name_format(first_name, last_name):
         "last" : last_name.title(),
         'full': full
     }
+    
