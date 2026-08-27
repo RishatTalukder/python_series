@@ -1,7 +1,10 @@
 [project]
-name = "2-password-generator"
+name = "password-generator"
 version = "0.1.0"
-description = "Add your description here"
+description = "A CLI password generator"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = []
+
+[project.scripts]
+password-generator = "main:main"
