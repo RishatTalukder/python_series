@@ -1,5 +1,5 @@
 [project]
-name = "project-3-website-status-checker"
+name = "webite-status-checker"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -10,7 +10,7 @@ requires-python = ">=3.14"
 dependencies = []
 
 [project.scripts]
-project-3-website-status-checker = "project_3_website_status_checker:main"
+webite-status-checker = "webite_status_checker:main"
 
 [build-system]
 requires = ["uv_build>=0.12.6,<0.13.0"]
