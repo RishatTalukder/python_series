@@ -107,3 +107,63 @@ if __name__ == "__main__":
             ...
 
 ```
+
+## Making a settings class to keep the general attributes
+
+
+```python
+# settings.py
+class Settings:
+    def __init__(self) -> None:
+        self.screen_width = 1200
+        self.screen_height = 800
+        self.bg_color = (0, 255, 171)
+
+```
+
+Now we can, use this class in `main.py`
+
+```python
+#main.py
+
+import pygame
+
+from settings import Settings
+
+class Main():
+    def __init__(self):
+        # initialize pygame
+        pygame.init()
+        
+        # initialize settings
+        self.settings = Settings()
+        
+        # set the screen, settings class update
+        self.screen = pygame.display.set_mode((
+            self.settings.screen_width,
+            self.settings.screen_height
+        ))
+        pygame.display.set_caption("Space Defenders")
+
+    
+    def gmae_loop(self):
+        
+        # main game loop
+        while True:
+
+            # check for events
+            for even in pygame.event.get():
+                if even.type == pygame.QUIT:
+                    quit()
+            
+            # fill the screen with the background color. settings update
+            self.screen.fill(self.settings.bg_color)
+
+            # update the screen
+            pygame.display.flip()
+            
+
+if __name__ == "__main__":
+    app = Main()
+    app.gmae_loop()
+```

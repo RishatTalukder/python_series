@@ -1,17 +1,22 @@
 import pygame
 
+from settings import Settings
+
 
 class Main():
     def __init__(self):
         # initialize pygame
         pygame.init()
         
+        self.settings = Settings()
+        
         # set the screen
-        self.screen = pygame.display.set_mode((1200, 800))
+        self.screen = pygame.display.set_mode((
+            self.settings.screen_width,
+            self.settings.screen_height
+        ))
         pygame.display.set_caption("Space Defenders")
 
-        # general attributes
-        self.bg_color = (0,255,171)
     
     def gmae_loop(self):
         
@@ -24,7 +29,7 @@ class Main():
                     quit()
             
             # fill the screen with the background color
-            self.screen.fill(self.bg_color)
+            self.screen.fill(self.settings.bg_color)
 
             # update the screen
             pygame.display.flip()
