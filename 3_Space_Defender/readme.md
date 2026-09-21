@@ -167,3 +167,68 @@ if __name__ == "__main__":
     app = Main()
     app.gmae_loop()
 ```
+
+
+## Loading A ship image
+
+```python
+#ship.py
+from __future__ import annotations
+from typing import TYPE_CHECKING
+import pygame
+
+if TYPE_CHECKING:
+    from main import Main
+
+
+class Ship:
+    def __init__(self, game: Main):
+        # get the game screen
+        self.screen = game.screen
+        self.screen_rect = game.screen.get_rect()
+        
+        # load the image
+        self.image = pygame.image.load('resources/ship.png')
+        self.image_rect = self.image.get_rect()
+        
+        # set the image position to the bottom center of the screen
+        self.image_rect.midbottom = self.screen_rect.midbottom
+        
+        
+    def blitme(self):
+        self.screen.blit(self.image, self.image_rect)
+
+```
+
+
+```python
+# main.py
+        self.screen = pygame.display.set_mode((
+            self.settings.screen_width,
+            self.settings.screen_height
+        ))
+        
+        # set the title
+        pygame.display.set_caption("Space Defenders")
+
+        # create the ship
+        self.ship = Ship(self)
+
+    
+    def gmae_loop(self):
+        
+        # main game loop
+        while True:
+
+            # check for events
+            for even in pygame.event.get():
+                if even.type == pygame.QUIT:
+                    quit()
+            
+            # fill the screen with the background color
+            self.screen.fill(self.settings.bg_color)
+            
+            # call the blitme method to render the ship
+            self.ship.blitme()
+
+```

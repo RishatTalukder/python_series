@@ -1,6 +1,7 @@
 import pygame
 
 from settings import Settings
+from ship import Ship
 
 
 class Main():
@@ -8,6 +9,7 @@ class Main():
         # initialize pygame
         pygame.init()
         
+        # initialize settings
         self.settings = Settings()
         
         # set the screen
@@ -15,7 +17,12 @@ class Main():
             self.settings.screen_width,
             self.settings.screen_height
         ))
+        
+        # set the title
         pygame.display.set_caption("Space Defenders")
+
+        # create the ship
+        self.ship = Ship(self)
 
     
     def gmae_loop(self):
@@ -30,6 +37,8 @@ class Main():
             
             # fill the screen with the background color
             self.screen.fill(self.settings.bg_color)
+            
+            self.ship.blitme()
 
             # update the screen
             pygame.display.flip()
