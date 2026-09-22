@@ -60,7 +60,7 @@ class Main():
         self.screen = pygame.display.set_mode((1200, 800))
         pygame.display.set_caption("Space Defenders")
     
-    def gmae_loop(self):
+    def game_loop(self):
         
         # main game loop
         while True:
@@ -76,7 +76,7 @@ class Main():
 
 if __name__ == "__main__":
     app = Main()
-    app.gmae_loop()
+    app.game_loop()
 ```
 
 
@@ -91,7 +91,7 @@ if __name__ == "__main__":
         # general attributes
         self.bg_color = (0,255,171)
     
-    def gmae_loop(self):
+    def game_loop(self):
         
         # main game loop
         while True:
@@ -146,7 +146,7 @@ class Main():
         pygame.display.set_caption("Space Defenders")
 
     
-    def gmae_loop(self):
+    def game_loop(self):
         
         # main game loop
         while True:
@@ -165,7 +165,7 @@ class Main():
 
 if __name__ == "__main__":
     app = Main()
-    app.gmae_loop()
+    app.game_loop()
 ```
 
 
@@ -215,7 +215,7 @@ class Ship:
         self.ship = Ship(self)
 
     
-    def gmae_loop(self):
+    def game_loop(self):
         
         # main game loop
         while True:
@@ -255,7 +255,7 @@ class Ship:
 ```python
 #main.py
 ...
-    def gmae_loop(self):
+    def game_loop(self):
         
         # main game loop
         while True:
@@ -283,7 +283,7 @@ class Ship:
 ```python
 #main.py
 ...
-    def gmae_loop(self):
+    def game_loop(self):
         
         # main game loop
         while True:
@@ -319,5 +319,61 @@ class Ship:
                     # if the right arrow key is pressed
                     # move the ship to the right by 10 pixels
                     self.ship.image_rect.x += 10
+...
+```
+
+# Continueous movement
+
+```python
+# ship.py
+...
+class Ship:
+    def __init__(self, game: Main):
+        self.moving_right = False
+        self.moving_left = False
+        
+        ...
+    
+    def update(self):
+        if self.moving_right:
+            self.image_rect.x += 1
+            
+        if self.moving_left:
+            self.image_rect.x -= 1
+            
+...
+```
+
+```python
+# main.py
+    def game_loop(self):
+        # main game loop
+        while True:
+
+            # check for events
+            self.check_events()
+            self.ship.update()
+            
+            # update the screen
+            self.update_screen()
+    
+    def check_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                quit()
+                
+            #keydown check for left and right    
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    self.ship.moving_right = True
+                if event.key == pygame.K_LEFT:
+                    self.ship.moving_left = True
+
+            #keyup check for left and right  
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_RIGHT:
+                    self.ship.moving_right = False
+                if event.key == pygame.K_LEFT:
+                    self.ship.moving_left = False
 ...
 ```

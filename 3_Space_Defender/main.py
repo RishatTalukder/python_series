@@ -25,13 +25,14 @@ class Main():
         self.ship = Ship(self)
 
     
-    def gmae_loop(self):
-        
+    def game_loop(self):
         # main game loop
         while True:
 
             # check for events
             self.check_events()
+            self.ship.update()
+            
             # update the screen
             self.update_screen()
     
@@ -42,7 +43,15 @@ class Main():
                 
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
-                    self.ship.image_rect.x += 10
+                    self.ship.moving_right = True
+                if event.key == pygame.K_LEFT:
+                    self.ship.moving_left = True
+                    
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_RIGHT:
+                    self.ship.moving_right = False
+                if event.key == pygame.K_LEFT:
+                    self.ship.moving_left = False
                 
     def update_screen(self):
         self.screen.fill(self.settings.bg_color)
@@ -51,4 +60,4 @@ class Main():
 
 if __name__ == "__main__":
     app = Main()
-    app.gmae_loop()
+    app.game_loop()
