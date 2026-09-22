@@ -377,3 +377,49 @@ class Ship:
                     self.ship.moving_left = False
 ...
 ```
+
+# Adjusting ship speed
+
+```python
+# settings.py
+
+class Settings:
+    def __init__(self) -> None:
+        self.screen_width = 1200
+        self.screen_height = 800
+        self.bg_color = (0, 255, 171)
+        
+        #ship settings
+        self.ship_speed = .5
+```
+
+```python
+#ship.py
+
+class Ship:
+    def __init__(self, game: Main):
+        
+        self.moving_right = False
+        self.moving_left = False
+        
+        # get the game object
+        self.settings = game.settings
+        
+        ...
+        
+        self.x = float(self.image_rect.x)
+        
+    def update(self):
+        if self.moving_right:
+            # calculate the new x position
+            self.x += self.settings.ship_speed
+            
+        if self.moving_left:
+            # calculate the new x position
+            self.x -= self.settings.ship_speed
+        
+        # update the rect of the image
+        self.image_rect.x = self.x
+        
+...
+```
