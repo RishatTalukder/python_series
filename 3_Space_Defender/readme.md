@@ -249,3 +249,31 @@ class Ship:
         self.image_rect.midbottom = self.
 ...
 ```
+
+## Refectoring the event checker
+
+```python
+#main.py
+...
+    def gmae_loop(self):
+        
+        # main game loop
+        while True:
+
+            # check for events
+            self.check_events()
+            
+            # fill the screen with the background color
+            self.screen.fill(self.settings.bg_color)
+            
+            self.ship.blitme()
+
+            # update the screen
+            pygame.display.flip()
+    
+    def check_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                quit()
+...
+```

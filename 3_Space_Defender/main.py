@@ -31,9 +31,7 @@ class Main():
         while True:
 
             # check for events
-            for even in pygame.event.get():
-                if even.type == pygame.QUIT:
-                    quit()
+            self.check_events()
             
             # fill the screen with the background color
             self.screen.fill(self.settings.bg_color)
@@ -42,7 +40,11 @@ class Main():
 
             # update the screen
             pygame.display.flip()
-            
+    
+    def check_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                quit()
 
 if __name__ == "__main__":
     app = Main()
