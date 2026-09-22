@@ -277,3 +277,28 @@ class Ship:
                 quit()
 ...
 ```
+
+## Refactor the screen update
+
+```python
+#main.py
+...
+    def gmae_loop(self):
+        
+        # main game loop
+        while True:
+
+            # check for events
+            self.check_events()
+            # update the screen
+            self.update_screen()
+    
+    def check_events(self):
+        ....
+                
+    def update_screen(self):
+        self.screen.fill(self.settings.bg_color)
+        self.ship.blitme()
+        pygame.display.flip()
+...
+```

@@ -32,19 +32,18 @@ class Main():
 
             # check for events
             self.check_events()
-            
-            # fill the screen with the background color
-            self.screen.fill(self.settings.bg_color)
-            
-            self.ship.blitme()
-
             # update the screen
-            pygame.display.flip()
+            self.update_screen()
     
     def check_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
+                
+    def update_screen(self):
+        self.screen.fill(self.settings.bg_color)
+        self.ship.blitme()
+        pygame.display.flip()
 
 if __name__ == "__main__":
     app = Main()
