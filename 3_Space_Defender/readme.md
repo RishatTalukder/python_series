@@ -302,3 +302,22 @@ class Ship:
         pygame.display.flip()
 ...
 ```
+
+## Ship movement
+
+```python
+#main.py
+...
+    def check_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                quit()
+                
+            # check for key events
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    # if the right arrow key is pressed
+                    # move the ship to the right by 10 pixels
+                    self.ship.image_rect.x += 10
+...
+```

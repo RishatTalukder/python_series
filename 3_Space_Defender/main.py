@@ -40,6 +40,10 @@ class Main():
             if event.type == pygame.QUIT:
                 quit()
                 
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    self.ship.image_rect.x += 10
+                
     def update_screen(self):
         self.screen.fill(self.settings.bg_color)
         self.ship.blitme()
