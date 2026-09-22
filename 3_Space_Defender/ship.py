@@ -12,6 +12,10 @@ class Ship:
         self.screen_rect = game.screen.get_rect()
         
         self.image = pygame.image.load('resources/ship.png')
+        self.image = pygame.transform.scale_by(
+            self.image,
+            0.2
+        )
         self.image_rect = self.image.get_rect()
         
         self.image_rect.midbottom = self.screen_rect.midbottom

@@ -232,3 +232,20 @@ class Ship:
             self.ship.blitme()
 
 ```
+
+## Making the ship image smaller
+
+```python
+# ship.py
+...
+        self.image = pygame.image.load('resources/ship.png')
+        # scalling down the image by 20%
+        self.image = pygame.transform.scale_by(
+            self.image,
+            0.2
+        )
+        self.image_rect = self.image.get_rect()
+        
+        self.image_rect.midbottom = self.
+...
+```
