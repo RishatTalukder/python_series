@@ -423,3 +423,22 @@ class Ship:
         
 ...
 ```
+
+# Limiting the ship movement
+
+```python
+# ship.py
+...
+    def update(self):
+        # checking if the ship is moving right and if the right side of the ship is less than the right side of the screen
+        if self.moving_right and self.image_rect.right < self.screen_rect.right:
+            self.x += self.settings.ship_speed
+        
+        # checking if the ship is moving left and if the left side of the ship is greater than the left side of the screen
+        if self.moving_left and self.image_rect.left > 0:
+            self.x -= self.settings.ship_speed
+            
+        self.image_rect.x = self.x
+
+...
+```
