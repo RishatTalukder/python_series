@@ -491,3 +491,23 @@ class Ship:
 ...
 ```
 
+
+## Full screen mode
+
+```python
+# main.py
+
+class Main():
+    def __init__(self):
+        # initialize pygame
+        pygame.init()
+        
+        # initialize settings
+        self.settings = Settings()
+        
+        # full screen mode
+        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        self.settings.screen_width = self.screen.get_rect().width
+        self.settings.screen_height = self.screen.get_rect().height
+...
+```
