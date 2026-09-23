@@ -424,7 +424,7 @@ class Ship:
 ...
 ```
 
-# Limiting the ship movement
+## Limiting the ship movement
 
 ```python
 # ship.py
@@ -440,5 +440,36 @@ class Ship:
             
         self.image_rect.x = self.x
 
+...
+```
+
+## Refactor the key events
+
+```python
+# main.py
+
+    def check_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                quit()
+                
+            elif event.type == pygame.KEYDOWN:
+                self._check_keydown_events(event)
+                    
+            elif event.type == pygame.KEYUP:
+                self._check_keyup_events(event)
+                    
+    def _check_keydown_events(self, event):
+        if event.key == pygame.K_RIGHT:
+            self.ship.moving_right = True
+        if event.key == pygame.K_LEFT:
+            self.ship.moving_left = True
+            
+    def _check_keyup_events(self, event):
+        if event.key == pygame.K_RIGHT:
+            self.ship.moving_right = False
+        if event.key == pygame.K_LEFT:
+            self.ship.moving_left = 
+            
 ...
 ```
