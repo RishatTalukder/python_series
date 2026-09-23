@@ -366,14 +366,14 @@ class Ship:
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
                     self.ship.moving_right = True
-                if event.key == pygame.K_LEFT:
+                elif event.key == pygame.K_LEFT:
                     self.ship.moving_left = True
 
             #keyup check for left and right  
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_RIGHT:
                     self.ship.moving_right = False
-                if event.key == pygame.K_LEFT:
+                elif event.key == pygame.K_LEFT:
                     self.ship.moving_left = False
 ...
 ```
@@ -462,14 +462,32 @@ class Ship:
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = True
-        if event.key == pygame.K_LEFT:
+        elif event.key == pygame.K_LEFT:
             self.ship.moving_left = True
             
     def _check_keyup_events(self, event):
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = False
-        if event.key == pygame.K_LEFT:
+        elif event.key == pygame.K_LEFT:
             self.ship.moving_left = 
             
 ...
 ```
+
+## Press K to quit
+
+```python
+# main.py
+...
+    def _check_keydown_events(self, event):
+        if event.key == pygame.K_RIGHT:
+            self.ship.moving_right = True
+        elif event.key == pygame.K_LEFT:
+            self.ship.moving_left = True
+            
+        elif event.key == pygame.K_q:
+            quit()
+
+...
+```
+
