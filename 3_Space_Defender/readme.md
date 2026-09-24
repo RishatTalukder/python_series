@@ -511,3 +511,119 @@ class Main():
         self.settings.screen_height = self.screen.get_rect().height
 ...
 ```
+
+## Making the ship fire bullets
+
+```python
+# settings.py
+
+class Settings:
+    def __init__(self) -> None:
+        ...
+        # Bullet settings
+        self.bullet_speed = 1.5
+        self.bullet_width = 3
+        self.bullet_height = 15
+        self.bullet_color = (60, 60, 60)
+```
+
+```python
+# bullet.py
+import pygame
+from pygame.sprite import Sprite
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from main import Main
+
+class Bullet(Sprite):
+    
+    def __init__(self, game: Main):
+        
+        super().__init__()
+        
+        # get the game
+        self.screen = game.screen
+        self.settings = game.settings
+        self.color = self.settings.bullet_color
+        
+        # make the bullet
+        self.rect : pygame.Rect = pygame.Rect(0, 0, self.settings.bullet_width, self.settings.bullet_height)
+        self.rect.midtop = game.ship.image_rect.midtop
+        
+        # get the bullet position
+        self.y = float(self.rect.y)
+        
+        
+    def update(self):
+        # update the bullet
+        self.y -= self.settings.bullet_speed
+        self.rect.y = self.y
+        
+    def draw_bullet(self):
+        pygame.draw.rect(self.screen, self.color, self.rect)
+```
+
+```python
+# main .py
+
+class Main():
+    def __init__(self):
+        # initialize pygame
+        pygame.init()
+        
+        # initialize settings
+        self.settings = Settings()
+        
+        # initialize the bullets
+        self.bullets = pygame.sprite.Group()
+        
+        # full screen mode
+        # self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+
+...
+
+ def game_loop(self):
+        # main game loop
+        while True:
+
+            # check for events
+            self.check_events()
+            
+            # update the game
+            self.ship.update()
+            self.bullets.update()
+            
+            # update the screen
+            self.update_screen()
+
+...
+
+def _check_keydown_events(self, event):
+        ...
+            
+        elif event.key == pygame.K_q:
+            quit()
+        
+        # check for spacebar
+        elif event.key == pygame.K_SPACE:
+            self._fire_bullet()
+    
+    # make the new bullet and add it to the group
+    def _fire_bullet(self):
+        new_bullet = Bullet(self)
+        self.bullets.add(new_bullet)
+            
+    def _check_keyup_events(self, event):
+        ...
+    
+    # fire every bullet in the group
+    def update_screen(self):
+        self.screen.fill(self.settings.bg_color)
+        self.ship.blitme()
+
+        # draw every bullet in the group
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
+        
+        pygame.display.flip()

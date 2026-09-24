@@ -2,6 +2,7 @@ import pygame
 
 from settings import Settings
 from ship import Ship
+from bullet import Bullet
 
 
 class Main():
@@ -11,6 +12,9 @@ class Main():
         
         # initialize settings
         self.settings = Settings()
+        
+        # initialize the bullets
+        self.bullets = pygame.sprite.Group()
         
         # full screen mode
         # self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
@@ -36,7 +40,10 @@ class Main():
 
             # check for events
             self.check_events()
+            
+            # update the game
             self.ship.update()
+            self.bullets.update()
             
             # update the screen
             self.update_screen()
@@ -61,6 +68,13 @@ class Main():
         elif event.key == pygame.K_q:
             quit()
             
+        elif event.key == pygame.K_SPACE:
+            self._fire_bullet()
+            
+    def _fire_bullet(self):
+        new_bullet = Bullet(self)
+        self.bullets.add(new_bullet)
+            
     def _check_keyup_events(self, event):
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = False
@@ -70,6 +84,9 @@ class Main():
     def update_screen(self):
         self.screen.fill(self.settings.bg_color)
         self.ship.blitme()
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
+        
         pygame.display.flip()
 
 if __name__ == "__main__":
