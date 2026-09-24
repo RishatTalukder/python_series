@@ -45,6 +45,12 @@ class Main():
             self.ship.update()
             self.bullets.update()
             
+            for bullet in self.bullets.copy():
+                if bullet.rect.bottom <= 0:
+                    self.bullets.remove(bullet)
+                    
+            print(len(self.bullets))
+            
             # update the screen
             self.update_screen()
     

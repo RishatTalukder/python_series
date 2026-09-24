@@ -627,3 +627,29 @@ def _check_keydown_events(self, event):
             bullet.draw_bullet()
         
         pygame.display.flip()
+```
+
+## Deleting a bullet when It leaves the screen
+
+```python 
+#main.py
+    def game_loop(self):
+        # main game loop
+        while True:
+
+            # check for events
+            self.check_events()
+            
+            # update the game
+            self.ship.update()
+            self.bullets.update()
+            
+            # check each bullets position
+            for bullet in self.bullets.copy():
+                if bullet.rect.bottom <= 0:
+                    self.bullets.remove(bullet)
+                    
+            print(len(self.bullets))
+
+...
+```
