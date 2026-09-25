@@ -679,3 +679,32 @@ class Settings:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
 ```
+
+## Refactoring the bullet update
+
+```python
+#main.py
+
+    def game_loop(self):
+        # main game loop
+        while True:
+
+            # check for events
+            self.check_events()
+            
+            # update the game
+            self.ship.update()
+            self._update_bullets()
+                    
+            print(len(self.bullets))
+            
+            # update the screen
+            self.update_screen()
+            
+    def _update_bullets(self):
+        self.bullets.update()
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
+```
+

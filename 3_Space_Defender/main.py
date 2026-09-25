@@ -43,16 +43,18 @@ class Main():
             
             # update the game
             self.ship.update()
-            self.bullets.update()
-            
-            for bullet in self.bullets.copy():
-                if bullet.rect.bottom <= 0:
-                    self.bullets.remove(bullet)
+            self._update_bullets()
                     
             print(len(self.bullets))
             
             # update the screen
             self.update_screen()
+            
+    def _update_bullets(self):
+        self.bullets.update()
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
     
     def check_events(self):
         for event in pygame.event.get():
