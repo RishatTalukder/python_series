@@ -1,5 +1,6 @@
 import pygame
 
+from alien import Alien
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
@@ -15,6 +16,9 @@ class Main():
         
         # initialize the bullets
         self.bullets = pygame.sprite.Group()
+        
+        # initialize the aliens
+        self.aliens = pygame.sprite.Group()
         
         # full screen mode
         # self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
@@ -32,6 +36,7 @@ class Main():
 
         # create the ship
         self.ship = Ship(self)
+        self._create_alien_fleet()
 
     
     def game_loop(self):
@@ -49,6 +54,20 @@ class Main():
             
             # update the screen
             self.update_screen()
+            
+    def update_screen(self):
+        self.screen.fill(self.settings.bg_color)
+        self.ship.blitme()
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
+            
+        self.aliens.draw(self.screen)
+        
+        pygame.display.flip()
+        
+    def _create_alien_fleet(self):
+        alien = Alien(self)
+        self.aliens.add(alien)
             
     def _update_bullets(self):
         self.bullets.update()
@@ -90,13 +109,6 @@ class Main():
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = False
                 
-    def update_screen(self):
-        self.screen.fill(self.settings.bg_color)
-        self.ship.blitme()
-        for bullet in self.bullets.sprites():
-            bullet.draw_bullet()
-        
-        pygame.display.flip()
 
 if __name__ == "__main__":
     app = Main()

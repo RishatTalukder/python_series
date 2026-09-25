@@ -708,3 +708,71 @@ class Settings:
                 self.bullets.remove(bullet)
 ```
 
+# Making the aliens
+
+```python
+# alien.py
+from typing import TYPE_CHECKING
+
+import pygame 
+from pygame.sprite import Sprite
+
+if TYPE_CHECKING:
+    from main import Main
+
+class Alien(Sprite):
+    
+    def __init__(self, game: Main):
+        super().__init__()
+        
+        self.screen = game.screen
+        
+        self.image = pygame.image.load('resources/alien.svg')
+        self.image = pygame.transform.scale_by(
+            self.image,
+            0.2
+        )
+        self.rect = self.image.get_rect()
+        
+        self.rect.x = self.rect.width
+        self.rect.y = self.rect.height
+        
+        self.x = float(self.rect.x)
+        
+        print(f'alien initial position: {self.rect.x}, {self.rect.y}')
+```
+
+
+```python
+# main.py
+class Main():
+    def __init__(self):
+        ...
+        
+        # initialize the aliens
+        self.aliens = pygame.sprite.Group()
+        
+        ...
+        self._create_alien_fleet()
+
+    
+    def game_loop(self):
+        ...
+            
+    def update_screen(self):
+        self.screen.fill(self.settings.bg_color)
+        self.ship.blitme()
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
+        
+        # draw the aliens in the screen
+        self.aliens.draw(self.screen)
+        
+        pygame.display.flip()
+        
+    # make an instance of the alien
+    # And add it to the group
+    def _create_alien_fleet(self):
+        alien = Alien(self)
+        self.aliens.add(alien)
+```
