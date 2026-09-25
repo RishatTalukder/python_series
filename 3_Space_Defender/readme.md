@@ -653,3 +653,29 @@ def _check_keydown_events(self, event):
 
 ...
 ```
+
+## Limiting the number of bullets on screen
+
+```python
+# setting.py
+
+class Settings:
+    def __init__(self) -> None:
+        ....
+        # Bullet settings
+        self.bullet_speed = 1.5
+        self.bullet_width = 3
+        self.bullet_height = 15
+        self.bullet_color = (60, 60, 60)
+        self.bullets_allowed = 3
+
+```
+
+```python
+#main.py
+    def _fire_bullet(self):
+        # check if the number of bullets is less than the allowed
+        if len(self.bullets) < self.settings.bullets_allowed:
+            new_bullet = Bullet(self)
+            self.bullets.add(new_bullet)
+```
