@@ -44,7 +44,7 @@ class Main():
     def display_fps(self):
 
         frame_rate = str(int(self.clock.get_fps()))
-        text = self.font.render(frame_rate, True, pygame.Color('white'))
+        text = self.font.render(f"FPS: {frame_rate}", False, pygame.Color('white'))
         self.screen.blit(text, (0, 0))
 
     

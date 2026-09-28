@@ -797,3 +797,53 @@ class Main():
 
             self.aliens.add(alien)
 ```
+
+## Adding FPS counter
+
+```python
+# main.py
+...
+        self.ship = Ship(self)
+        self._create_alien_fleet()
+        
+        self.clock = pygame.time.Clock()
+        self.font = pygame.font.SysFont('arial', 48)
+        
+    def display_fps(self):
+
+        frame_rate = str(int(self.clock.get_fps()))
+        text = self.font.render(f"FPS: {frame_rate}", False, pygame.Color('white'))
+        self.screen.blit(text, (0, 0))
+
+    
+    def game_loop(self):
+        # main game loop
+        while True:
+
+            # check for events
+            self.check_events()
+            
+            # update the game
+            self.ship.update()
+            self._update_bullets()
+                    
+            # print(len(self.bullets))
+            
+            # update the screen
+            self.update_screen()
+
+            # the clock tick event
+            self.clock.tick()
+            
+    def update_screen(self):
+        self.screen.fill(self.settings.bg_color)
+        # display the fps
+        self.display_fps()
+        self.ship.blitme()
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
+            
+        self.aliens.draw(self.screen)
+        
+        pygame.display.flip()
+```
