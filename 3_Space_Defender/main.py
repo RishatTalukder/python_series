@@ -37,6 +37,15 @@ class Main():
         # create the ship
         self.ship = Ship(self)
         self._create_alien_fleet()
+        
+        self.clock = pygame.time.Clock()
+        self.font = pygame.font.SysFont('arial', 48)
+        
+    def display_fps(self):
+
+        frame_rate = str(int(self.clock.get_fps()))
+        text = self.font.render(frame_rate, True, pygame.Color('white'))
+        self.screen.blit(text, (0, 0))
 
     
     def game_loop(self):
@@ -54,9 +63,11 @@ class Main():
             
             # update the screen
             self.update_screen()
+            self.clock.tick()
             
     def update_screen(self):
         self.screen.fill(self.settings.bg_color)
+        self.display_fps()
         self.ship.blitme()
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
