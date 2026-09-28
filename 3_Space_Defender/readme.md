@@ -730,7 +730,7 @@ class Alien(Sprite):
         self.image = pygame.image.load('resources/alien.svg')
         self.image = pygame.transform.scale_by(
             self.image,
-            0.2
+            0.1
         )
         self.rect = self.image.get_rect()
         
@@ -775,4 +775,25 @@ class Main():
     def _create_alien_fleet(self):
         alien = Alien(self)
         self.aliens.add(alien)
+```
+
+## Adding a fleet of aliens
+
+```python
+# main.py
+    def _create_alien_fleet(self):
+        alien = Alien(self)
+        # assert alien.rect is not None
+        alien_width = alien.rect.width
+        available_space_x = self.settings.screen_width - (2 * alien_width)
+        number_aliens_x = available_space_x // (2 * alien_width)
+        
+        print(number_aliens_x)
+        
+        for alien_number in range(number_aliens_x):
+            alien = Alien(self)
+            alien.x = alien_width + 2 * alien_width * alien_number
+            alien.rect.x = alien.x
+
+            self.aliens.add(alien)
 ```

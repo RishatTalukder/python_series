@@ -50,7 +50,7 @@ class Main():
             self.ship.update()
             self._update_bullets()
                     
-            print(len(self.bullets))
+            # print(len(self.bullets))
             
             # update the screen
             self.update_screen()
@@ -67,7 +67,19 @@ class Main():
         
     def _create_alien_fleet(self):
         alien = Alien(self)
-        self.aliens.add(alien)
+        # assert alien.rect is not None
+        alien_width = alien.rect.width
+        available_space_x = self.settings.screen_width - (2 * alien_width)
+        number_aliens_x = available_space_x // (2 * alien_width)
+        
+        print(number_aliens_x)
+        
+        for alien_number in range(number_aliens_x):
+            alien = Alien(self)
+            alien.x = alien_width + 2 * alien_width * alien_number
+            alien.rect.x = alien.x
+
+            self.aliens.add(alien)
             
     def _update_bullets(self):
         self.bullets.update()

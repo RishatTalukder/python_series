@@ -16,7 +16,7 @@ class Alien(Sprite):
         self.image = pygame.image.load('resources/alien.svg')
         self.image = pygame.transform.scale_by(
             self.image,
-            0.2
+            0.1
         )
         self.rect = self.image.get_rect()
         
