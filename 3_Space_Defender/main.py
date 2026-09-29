@@ -79,18 +79,28 @@ class Main():
     def _create_alien_fleet(self):
         alien = Alien(self)
         # assert alien.rect is not None
-        alien_width = alien.rect.width
+        alien_width, alien_height = alien.rect.size
+        
         available_space_x = self.settings.screen_width - (2 * alien_width)
         number_aliens_x = available_space_x // (2 * alien_width)
         
+        ship_height = self.ship.image_rect.height
+        available_space_y = self.settings.screen_height - (4 * alien_height) - ship_height
+        number_rows = available_space_y // (2 * alien_height)
+        
         print(number_aliens_x)
         
-        for alien_number in range(number_aliens_x):
-            alien = Alien(self)
-            alien.x = alien_width + 2 * alien_width * alien_number
-            alien.rect.x = alien.x
-
-            self.aliens.add(alien)
+        for row in range(number_rows):
+            for alien_number in range(number_aliens_x):
+                self._create_alien(alien_number, row)
+                
+    def _create_alien(self, alien_number, row_number):
+        alien = Alien(self)
+        alien_width, alien_height = alien.rect.size
+        alien.x = 50 +alien_width + 2 * alien_width * alien_number
+        alien.rect.x = alien.x
+        alien.rect.y = alien_height + 2 * alien_height * row_number
+        self.aliens.add(alien)
             
     def _update_bullets(self):
         self.bullets.update()
