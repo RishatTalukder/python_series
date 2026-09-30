@@ -12,6 +12,7 @@ class Alien(Sprite):
         super().__init__()
         
         self.screen = game.screen
+        self.settings = game.settings
         
         self.image = pygame.image.load('resources/alien.svg')
         self.image = pygame.transform.scale_by(
@@ -28,3 +29,7 @@ class Alien(Sprite):
         print(f'alien initial position: {self.rect.x}, {self.rect.y}')
         
         
+        
+    def update(self):
+        self.x += self.settings.alien_speed
+        self.rect.x = self.x

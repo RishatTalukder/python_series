@@ -59,7 +59,8 @@ class Main():
             self.ship.update()
             self._update_bullets()
                     
-            # print(len(self.bullets))
+            #update the aliens
+            self._update_aliens()
             
             # update the screen
             self.update_screen()
@@ -101,6 +102,9 @@ class Main():
         alien.rect.x = alien.x
         alien.rect.y = alien_height + 2 * alien_height * row_number
         self.aliens.add(alien)
+        
+    def _update_aliens(self):
+        self.aliens.update()
             
     def _update_bullets(self):
         self.bullets.update()

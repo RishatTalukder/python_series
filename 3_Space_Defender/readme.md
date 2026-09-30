@@ -879,3 +879,50 @@ def _create_alien_fleet(self):
         self.aliens.add(alien)
 
 ```
+
+## Moving the aliens
+
+```python
+# settings.py
+class Settings:
+    def __init__(self) -> None:
+        ....
+        # alien settings
+        self.alien_speed = 1.0
+
+```
+
+```python
+# alien.py
+class Alien(Sprite):
+    
+    def __init__(self, game: Main):
+        ...
+        
+    def update(self):
+        self.x += self.settings.alien_speed
+        self.rect.x = self.x
+
+```
+
+```python 
+# main.py
+
+     def game_loop(self):
+        # main game loop
+        while True:
+            ...
+                    
+            #update the aliens
+            self._update_aliens()
+            
+            # update the screen
+            self.update_screen()
+            self.clock.tick()
+
+    def _update_aliens(self):
+        self.aliens.update()
+
+```
+
+
