@@ -104,7 +104,19 @@ class Main():
         self.aliens.add(alien)
         
     def _update_aliens(self):
+        self.check_aliens_edges()
         self.aliens.update()
+
+    def check_aliens_edges(self):
+        for alien in self.aliens.sprites():
+            if alien.check_edge():
+                self._reverse_direction()
+                break
+
+    def _reverse_direction(self):
+        # for alien in self.aliens.sprites():
+        #     alien.rect.y += self.settings.fleet_drop_speed
+        self.settings.alien_direction *= -1
             
     def _update_bullets(self):
         self.bullets.update()

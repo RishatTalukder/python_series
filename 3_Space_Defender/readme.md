@@ -925,4 +925,51 @@ class Alien(Sprite):
 
 ```
 
+## make the aliens move in the left and right
 
+```python
+# settings.py
+class Settings:
+    def __init__(self) -> None:
+        ...
+        
+        # alien settings
+        self.alien_speed = 1.0
+        self.alien_direction = 1    
+```
+
+```python
+# alien.py
+...
+class Alien(Sprite):
+    ...
+
+    def check_edge(self):
+        screen_rect = self.screen.get_rect()
+        if self.rect.right >= screen_rect.right or self.rect.left <= 0:
+            return True
+
+    def update(self):
+        self.x += (self.settings.alien_speed*self.settings.alien_direction)
+        self.rect.x = self.x
+```
+
+
+```python 
+# main.py
+
+    def _update_aliens(self):
+        self.check_aliens_edges()
+        self.aliens.update()
+
+    def check_aliens_edges(self):
+        for alien in self.aliens.sprites():
+            if alien.check_edge():
+                self._reverse_direction()
+                break
+
+    def _reverse_direction(self):
+        # for alien in self.aliens.sprites():
+        #     alien.rect.y += self.settings.fleet_drop_speed
+        self.settings.alien_direction *= -1
+```
