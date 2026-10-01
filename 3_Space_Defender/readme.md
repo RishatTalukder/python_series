@@ -973,3 +973,26 @@ class Alien(Sprite):
         #     alien.rect.y += self.settings.fleet_drop_speed
         self.settings.alien_direction *= -1
 ```
+
+## Configure the aliens to go down
+
+```python
+# settings.py
+class Settings:
+    def __init__(self) -> None:
+        ...
+        
+        # alien settings
+        self.alien_speed = 1.0
+        self.alien_direction = 1    
+        self.fleet_drop_speed = 10
+```
+
+```python
+# main.py
+    def _reverse_direction(self):
+        for alien in self.aliens.sprites():
+            alien.rect.y += self.settings.fleet_drop_speed
+        ...
+```
+

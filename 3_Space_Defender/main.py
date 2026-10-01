@@ -114,8 +114,8 @@ class Main():
                 break
 
     def _reverse_direction(self):
-        # for alien in self.aliens.sprites():
-        #     alien.rect.y += self.settings.fleet_drop_speed
+        for alien in self.aliens.sprites():
+            alien.rect.y += self.settings.alien_drop_speed
         self.settings.alien_direction *= -1
             
     def _update_bullets(self):

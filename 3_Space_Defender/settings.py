@@ -18,3 +18,4 @@ class Settings:
         # alien settings
         self.alien_speed = 1.0
         self.alien_direction = 1
+        self.alien_drop_speed = 10
