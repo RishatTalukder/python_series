@@ -996,3 +996,17 @@ class Settings:
         ...
 ```
 
+## Shooting the aliens
+
+```python
+# main.py
+
+    def _update_bullets(self):
+        self.bullets.update()
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
+        
+        # just one line and pygame checks for all the collisions
+        collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
+```
