@@ -1010,3 +1010,21 @@ class Settings:
         # just one line and pygame checks for all the collisions
         collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
 ```
+
+## Re-populate the fleet
+
+```python 
+#main.py
+    def _update_bullets(self):
+        self.bullets.update()
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
+                
+        collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
+        
+        if not self.aliens:
+            self.bullets.empty()
+            self._create_alien_fleet()
+
+```

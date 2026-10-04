@@ -125,6 +125,10 @@ class Main():
                 self.bullets.remove(bullet)
                 
         collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
+        
+        if not self.aliens:
+            self.bullets.empty()
+            self._create_alien_fleet()
     
     def check_events(self):
         for event in pygame.event.get():
