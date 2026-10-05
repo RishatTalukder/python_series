@@ -64,7 +64,7 @@ class Main():
             
             # update the screen
             self.update_screen()
-            self.clock.tick()
+            self.clock.tick(60)
             
     def update_screen(self):
         self.screen.fill(self.settings.bg_color)

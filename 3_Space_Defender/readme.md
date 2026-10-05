@@ -1044,3 +1044,42 @@ self._check_bullet_alien_collisions()
             self._create_alien_fleet()
 
 ```
+
+
+## Setting the frame rate to ensure consistency
+
+```python
+#main.py
+def game_loop(self):
+        # main game loop
+        while True:
+...
+            # update the screen
+            self.update_screen()
+            self.clock.tick(60)
+```
+
+```python 
+#main.py
+class Settings:
+    def __init__(self) -> None:
+        self.screen_width = 1200
+        self.screen_height = 800
+        self.bg_color = (0, 255, 171)
+        
+        #ship settings
+        self.ship_speed = 6
+        
+        
+        # Bullet settings
+        self.bullet_speed = 10
+        self.bullet_width = 3
+        self.bullet_height = 15
+        self.bullet_color = (60, 60, 60)
+        self.bullets_allowed = 3
+        
+        # alien settings
+        self.alien_speed = 6.0
+        self.alien_direction = 1
+        self.alien_drop_speed = 10
+```
