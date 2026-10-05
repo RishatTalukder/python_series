@@ -1028,3 +1028,19 @@ class Settings:
             self._create_alien_fleet()
 
 ```
+
+## Refactoring Bullet alien collision
+
+```python 
+#main.py
+self._check_bullet_alien_collisions()
+    
+    
+    def _check_bullet_alien_collisions(self):
+        collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
+        
+        if not self.aliens:
+            self.bullets.empty()
+            self._create_alien_fleet()
+
+```
