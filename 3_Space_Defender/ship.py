@@ -22,19 +22,19 @@ class Ship:
             self.image,
             0.2
         )
-        self.image_rect = self.image.get_rect()
-        self.image_rect.midbottom = self.screen_rect.midbottom
+        self.rect = self.image.get_rect()
+        self.rect.midbottom = self.screen_rect.midbottom
         
-        self.x = float(self.image_rect.x)
+        self.x = float(self.rect.x)
         
     def update(self):
-        if self.moving_right and self.image_rect.right < self.screen_rect.right:
+        if self.moving_right and self.rect.right < self.screen_rect.right:
             self.x += self.settings.ship_speed
             
-        if self.moving_left and self.image_rect.left > 0:
+        if self.moving_left and self.rect.left > 0:
             self.x -= self.settings.ship_speed
             
-        self.image_rect.x = self.x
+        self.rect.x = self.x
         
     def blitme(self):
-        self.screen.blit(self.image, self.image_rect)
+        self.screen.blit(self.image, self.rect)
