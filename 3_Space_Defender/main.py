@@ -85,7 +85,7 @@ class Main():
         available_space_x = self.settings.screen_width - (2 * alien_width)
         number_aliens_x = available_space_x // (2 * alien_width)
         
-        ship_height = self.ship.image_rect.height
+        ship_height = self.ship.rect.height
         available_space_y = self.settings.screen_height - (4 * alien_height) - ship_height
         number_rows = available_space_y // (2 * alien_height)
         
@@ -107,9 +107,11 @@ class Main():
         self.check_aliens_edges()
         self.aliens.update()
         
-        for alien in self.aliens:
-            if alien.rect.colliderect(self.ship.image_rect):
-                print("Ship hit!")
+        if pygame.sprite.spritecollideany(
+            self.ship,
+            self.aliens
+        ):
+            print('ship hit')
 
     def check_aliens_edges(self):
         for alien in self.aliens.sprites():
