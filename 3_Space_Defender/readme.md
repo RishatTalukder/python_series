@@ -1083,3 +1083,17 @@ class Settings:
         self.alien_direction = 1
         self.alien_drop_speed = 10
 ```
+
+## detect alien collision with the ship
+
+```python
+#main.py
+ def _update_aliens(self):
+        self.check_aliens_edges()
+        self.aliens.update()
+
+        # loop thorugh all the aliens and see if they hit the ship     
+        for alien in self.aliens:
+            if alien.rect.colliderect(self.ship.image_rect):
+                print("Ship hit!")
+```

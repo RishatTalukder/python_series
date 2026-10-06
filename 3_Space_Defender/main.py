@@ -106,6 +106,10 @@ class Main():
     def _update_aliens(self):
         self.check_aliens_edges()
         self.aliens.update()
+        
+        for alien in self.aliens:
+            if alien.rect.colliderect(self.ship.image_rect):
+                print("Ship hit!")
 
     def check_aliens_edges(self):
         for alien in self.aliens.sprites():
