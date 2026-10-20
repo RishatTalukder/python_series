@@ -26,7 +26,7 @@ Pygame should be installed and if you are on ubuntu or linux you might encounter
 
 ![alt text](image.png)
 
-All the sources suggest this is problem with the more recent versions of python. I got this error on a 3.14 environment. 
+All the sources suggest this is problem with the more recent versions of python. I got this error on a 3.14 environment.
 
 I downgraded to `3.12` and it worked.
 
@@ -46,8 +46,7 @@ I'll be using `pygame-ce` going forward.
 
 Make a new file named `main.py` and inside the file write the following:
 
-
-```python 
+```python
 import pygame
 
 
@@ -55,13 +54,13 @@ class Main():
     def __init__(self):
         # initialize pygame
         pygame.init()
-        
+
         # set the screen
         self.screen = pygame.display.set_mode((1200, 800))
         pygame.display.set_caption("Space Defenders")
-    
+
     def game_loop(self):
-        
+
         # main game loop
         while True:
 
@@ -69,19 +68,17 @@ class Main():
             for even in pygame.event.get():
                 if even.type == pygame.QUIT:
                     quit()
-            
+
             # fill the screen with the background color
             self.screen.fill(self.bg_color)
-            
+
 
 if __name__ == "__main__":
     app = Main()
     app.game_loop()
 ```
 
-
 ## Setting thhe background
-
 
 ```python
 #main.py
@@ -90,9 +87,9 @@ if __name__ == "__main__":
 
         # general attributes
         self.bg_color = (0,255,171)
-    
+
     def game_loop(self):
-        
+
         # main game loop
         while True:
 
@@ -100,7 +97,7 @@ if __name__ == "__main__":
             for even in pygame.event.get():
                 if even.type == pygame.QUIT:
                     quit()
-            
+
             # fill the screen with the background color
             self.screen.fill(self.bg_color)
 
@@ -109,7 +106,6 @@ if __name__ == "__main__":
 ```
 
 ## Making a settings class to keep the general attributes
-
 
 ```python
 # settings.py
@@ -134,10 +130,10 @@ class Main():
     def __init__(self):
         # initialize pygame
         pygame.init()
-        
+
         # initialize settings
         self.settings = Settings()
-        
+
         # set the screen, settings class update
         self.screen = pygame.display.set_mode((
             self.settings.screen_width,
@@ -145,9 +141,9 @@ class Main():
         ))
         pygame.display.set_caption("Space Defenders")
 
-    
+
     def game_loop(self):
-        
+
         # main game loop
         while True:
 
@@ -155,19 +151,18 @@ class Main():
             for even in pygame.event.get():
                 if even.type == pygame.QUIT:
                     quit()
-            
+
             # fill the screen with the background color. settings update
             self.screen.fill(self.settings.bg_color)
 
             # update the screen
             pygame.display.flip()
-            
+
 
 if __name__ == "__main__":
     app = Main()
     app.game_loop()
 ```
-
 
 ## Loading A ship image
 
@@ -186,20 +181,19 @@ class Ship:
         # get the game screen
         self.screen = game.screen
         self.screen_rect = game.screen.get_rect()
-        
+
         # load the image
         self.image = pygame.image.load('resources/ship.png')
         self.image_rect = self.image.get_rect()
-        
+
         # set the image position to the bottom center of the screen
         self.image_rect.midbottom = self.screen_rect.midbottom
-        
-        
+
+
     def blitme(self):
         self.screen.blit(self.image, self.image_rect)
 
 ```
-
 
 ```python
 # main.py
@@ -207,16 +201,16 @@ class Ship:
             self.settings.screen_width,
             self.settings.screen_height
         ))
-        
+
         # set the title
         pygame.display.set_caption("Space Defenders")
 
         # create the ship
         self.ship = Ship(self)
 
-    
+
     def game_loop(self):
-        
+
         # main game loop
         while True:
 
@@ -224,10 +218,10 @@ class Ship:
             for even in pygame.event.get():
                 if even.type == pygame.QUIT:
                     quit()
-            
+
             # fill the screen with the background color
             self.screen.fill(self.settings.bg_color)
-            
+
             # call the blitme method to render the ship
             self.ship.blitme()
 
@@ -245,7 +239,7 @@ class Ship:
             0.2
         )
         self.image_rect = self.image.get_rect()
-        
+
         self.image_rect.midbottom = self.
 ...
 ```
@@ -256,21 +250,21 @@ class Ship:
 #main.py
 ...
     def game_loop(self):
-        
+
         # main game loop
         while True:
 
             # check for events
             self.check_events()
-            
+
             # fill the screen with the background color
             self.screen.fill(self.settings.bg_color)
-            
+
             self.ship.blitme()
 
             # update the screen
             pygame.display.flip()
-    
+
     def check_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -284,7 +278,7 @@ class Ship:
 #main.py
 ...
     def game_loop(self):
-        
+
         # main game loop
         while True:
 
@@ -292,10 +286,10 @@ class Ship:
             self.check_events()
             # update the screen
             self.update_screen()
-    
+
     def check_events(self):
         ....
-                
+
     def update_screen(self):
         self.screen.fill(self.settings.bg_color)
         self.ship.blitme()
@@ -312,7 +306,7 @@ class Ship:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
-                
+
             # check for key events
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
@@ -331,16 +325,16 @@ class Ship:
     def __init__(self, game: Main):
         self.moving_right = False
         self.moving_left = False
-        
+
         ...
-    
+
     def update(self):
         if self.moving_right:
             self.image_rect.x += 1
-            
+
         if self.moving_left:
             self.image_rect.x -= 1
-            
+
 ...
 ```
 
@@ -353,23 +347,23 @@ class Ship:
             # check for events
             self.check_events()
             self.ship.update()
-            
+
             # update the screen
             self.update_screen()
-    
+
     def check_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
-                
-            #keydown check for left and right    
+
+            #keydown check for left and right
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
                     self.ship.moving_right = True
                 elif event.key == pygame.K_LEFT:
                     self.ship.moving_left = True
 
-            #keyup check for left and right  
+            #keyup check for left and right
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_RIGHT:
                     self.ship.moving_right = False
@@ -388,7 +382,7 @@ class Settings:
         self.screen_width = 1200
         self.screen_height = 800
         self.bg_color = (0, 255, 171)
-        
+
         #ship settings
         self.ship_speed = .5
 ```
@@ -398,29 +392,29 @@ class Settings:
 
 class Ship:
     def __init__(self, game: Main):
-        
+
         self.moving_right = False
         self.moving_left = False
-        
+
         # get the game object
         self.settings = game.settings
-        
+
         ...
-        
+
         self.x = float(self.image_rect.x)
-        
+
     def update(self):
         if self.moving_right:
             # calculate the new x position
             self.x += self.settings.ship_speed
-            
+
         if self.moving_left:
             # calculate the new x position
             self.x -= self.settings.ship_speed
-        
+
         # update the rect of the image
         self.image_rect.x = self.x
-        
+
 ...
 ```
 
@@ -433,11 +427,11 @@ class Ship:
         # checking if the ship is moving right and if the right side of the ship is less than the right side of the screen
         if self.moving_right and self.image_rect.right < self.screen_rect.right:
             self.x += self.settings.ship_speed
-        
+
         # checking if the ship is moving left and if the left side of the ship is greater than the left side of the screen
         if self.moving_left and self.image_rect.left > 0:
             self.x -= self.settings.ship_speed
-            
+
         self.image_rect.x = self.x
 
 ...
@@ -452,25 +446,25 @@ class Ship:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
-                
+
             elif event.type == pygame.KEYDOWN:
                 self._check_keydown_events(event)
-                    
+
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
-                    
+
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = True
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = True
-            
+
     def _check_keyup_events(self, event):
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = False
         elif event.key == pygame.K_LEFT:
-            self.ship.moving_left = 
-            
+            self.ship.moving_left =
+
 ...
 ```
 
@@ -484,13 +478,12 @@ class Ship:
             self.ship.moving_right = True
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = True
-            
+
         elif event.key == pygame.K_q:
             quit()
 
 ...
 ```
-
 
 ## Full screen mode
 
@@ -501,10 +494,10 @@ class Main():
     def __init__(self):
         # initialize pygame
         pygame.init()
-        
+
         # initialize settings
         self.settings = Settings()
-        
+
         # full screen mode
         self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.settings.screen_width = self.screen.get_rect().width
@@ -537,29 +530,29 @@ if TYPE_CHECKING:
     from main import Main
 
 class Bullet(Sprite):
-    
+
     def __init__(self, game: Main):
-        
+
         super().__init__()
-        
+
         # get the game
         self.screen = game.screen
         self.settings = game.settings
         self.color = self.settings.bullet_color
-        
+
         # make the bullet
         self.rect : pygame.Rect = pygame.Rect(0, 0, self.settings.bullet_width, self.settings.bullet_height)
         self.rect.midtop = game.ship.image_rect.midtop
-        
+
         # get the bullet position
         self.y = float(self.rect.y)
-        
-        
+
+
     def update(self):
         # update the bullet
         self.y -= self.settings.bullet_speed
         self.rect.y = self.y
-        
+
     def draw_bullet(self):
         pygame.draw.rect(self.screen, self.color, self.rect)
 ```
@@ -571,13 +564,13 @@ class Main():
     def __init__(self):
         # initialize pygame
         pygame.init()
-        
+
         # initialize settings
         self.settings = Settings()
-        
+
         # initialize the bullets
         self.bullets = pygame.sprite.Group()
-        
+
         # full screen mode
         # self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 
@@ -589,11 +582,11 @@ class Main():
 
             # check for events
             self.check_events()
-            
+
             # update the game
             self.ship.update()
             self.bullets.update()
-            
+
             # update the screen
             self.update_screen()
 
@@ -601,22 +594,22 @@ class Main():
 
 def _check_keydown_events(self, event):
         ...
-            
+
         elif event.key == pygame.K_q:
             quit()
-        
+
         # check for spacebar
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()
-    
+
     # make the new bullet and add it to the group
     def _fire_bullet(self):
         new_bullet = Bullet(self)
         self.bullets.add(new_bullet)
-            
+
     def _check_keyup_events(self, event):
         ...
-    
+
     # fire every bullet in the group
     def update_screen(self):
         self.screen.fill(self.settings.bg_color)
@@ -625,13 +618,13 @@ def _check_keydown_events(self, event):
         # draw every bullet in the group
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
-        
+
         pygame.display.flip()
 ```
 
 ## Deleting a bullet when It leaves the screen
 
-```python 
+```python
 #main.py
     def game_loop(self):
         # main game loop
@@ -639,16 +632,16 @@ def _check_keydown_events(self, event):
 
             # check for events
             self.check_events()
-            
+
             # update the game
             self.ship.update()
             self.bullets.update()
-            
+
             # check each bullets position
             for bullet in self.bullets.copy():
                 if bullet.rect.bottom <= 0:
                     self.bullets.remove(bullet)
-                    
+
             print(len(self.bullets))
 
 ...
@@ -691,16 +684,16 @@ class Settings:
 
             # check for events
             self.check_events()
-            
+
             # update the game
             self.ship.update()
             self._update_bullets()
-                    
+
             print(len(self.bullets))
-            
+
             # update the screen
             self.update_screen()
-            
+
     def _update_bullets(self):
         self.bullets.update()
         for bullet in self.bullets.copy():
@@ -714,62 +707,61 @@ class Settings:
 # alien.py
 from typing import TYPE_CHECKING
 
-import pygame 
+import pygame
 from pygame.sprite import Sprite
 
 if TYPE_CHECKING:
     from main import Main
 
 class Alien(Sprite):
-    
+
     def __init__(self, game: Main):
         super().__init__()
-        
+
         self.screen = game.screen
-        
+
         self.image = pygame.image.load('resources/alien.svg')
         self.image = pygame.transform.scale_by(
             self.image,
             0.1
         )
         self.rect = self.image.get_rect()
-        
+
         self.rect.x = self.rect.width
         self.rect.y = self.rect.height
-        
+
         self.x = float(self.rect.x)
-        
+
         print(f'alien initial position: {self.rect.x}, {self.rect.y}')
 ```
-
 
 ```python
 # main.py
 class Main():
     def __init__(self):
         ...
-        
+
         # initialize the aliens
         self.aliens = pygame.sprite.Group()
-        
+
         ...
         self._create_alien_fleet()
 
-    
+
     def game_loop(self):
         ...
-            
+
     def update_screen(self):
         self.screen.fill(self.settings.bg_color)
         self.ship.blitme()
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
-        
+
         # draw the aliens in the screen
         self.aliens.draw(self.screen)
-        
+
         pygame.display.flip()
-        
+
     # make an instance of the alien
     # And add it to the group
     def _create_alien_fleet(self):
@@ -787,9 +779,9 @@ class Main():
         alien_width = alien.rect.width
         available_space_x = self.settings.screen_width - (2 * alien_width)
         number_aliens_x = available_space_x // (2 * alien_width)
-        
+
         print(number_aliens_x)
-        
+
         for alien_number in range(number_aliens_x):
             alien = Alien(self)
             alien.x = alien_width + 2 * alien_width * alien_number
@@ -805,36 +797,36 @@ class Main():
 ...
         self.ship = Ship(self)
         self._create_alien_fleet()
-        
+
         self.clock = pygame.time.Clock()
         self.font = pygame.font.SysFont('arial', 48)
-        
+
     def display_fps(self):
 
         frame_rate = str(int(self.clock.get_fps()))
         text = self.font.render(f"FPS: {frame_rate}", False, pygame.Color('white'))
         self.screen.blit(text, (0, 0))
 
-    
+
     def game_loop(self):
         # main game loop
         while True:
 
             # check for events
             self.check_events()
-            
+
             # update the game
             self.ship.update()
             self._update_bullets()
-                    
+
             # print(len(self.bullets))
-            
+
             # update the screen
             self.update_screen()
 
             # the clock tick event
             self.clock.tick()
-            
+
     def update_screen(self):
         self.screen.fill(self.settings.bg_color)
         # display the fps
@@ -842,9 +834,9 @@ class Main():
         self.ship.blitme()
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
-            
+
         self.aliens.draw(self.screen)
-        
+
         pygame.display.flip()
 ```
 
@@ -856,20 +848,20 @@ def _create_alien_fleet(self):
         alien = Alien(self)
         # assert alien.rect is not None
         alien_width, alien_height = alien.rect.size
-        
+
         available_space_x = self.settings.screen_width - (2 * alien_width)
         number_aliens_x = available_space_x // (2 * alien_width)
-        
+
         ship_height = self.ship.image_rect.height
         available_space_y = self.settings.screen_height - (4 * alien_height) - ship_height
         number_rows = available_space_y // (2 * alien_height)
-        
+
         print(number_aliens_x)
-        
+
         for row in range(number_rows):
             for alien_number in range(number_aliens_x):
                 self._create_alien(alien_number, row)
-                
+
     def _create_alien(self, alien_number, row_number):
         alien = Alien(self)
         alien_width, alien_height = alien.rect.size
@@ -895,27 +887,27 @@ class Settings:
 ```python
 # alien.py
 class Alien(Sprite):
-    
+
     def __init__(self, game: Main):
         ...
-        
+
     def update(self):
         self.x += self.settings.alien_speed
         self.rect.x = self.x
 
 ```
 
-```python 
+```python
 # main.py
 
      def game_loop(self):
         # main game loop
         while True:
             ...
-                    
+
             #update the aliens
             self._update_aliens()
-            
+
             # update the screen
             self.update_screen()
             self.clock.tick()
@@ -932,10 +924,10 @@ class Alien(Sprite):
 class Settings:
     def __init__(self) -> None:
         ...
-        
+
         # alien settings
         self.alien_speed = 1.0
-        self.alien_direction = 1    
+        self.alien_direction = 1
 ```
 
 ```python
@@ -954,8 +946,7 @@ class Alien(Sprite):
         self.rect.x = self.x
 ```
 
-
-```python 
+```python
 # main.py
 
     def _update_aliens(self):
@@ -981,10 +972,10 @@ class Alien(Sprite):
 class Settings:
     def __init__(self) -> None:
         ...
-        
+
         # alien settings
         self.alien_speed = 1.0
-        self.alien_direction = 1    
+        self.alien_direction = 1
         self.fleet_drop_speed = 10
 ```
 
@@ -1006,23 +997,23 @@ class Settings:
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
-        
+
         # just one line and pygame checks for all the collisions
         collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
 ```
 
 ## Re-populate the fleet
 
-```python 
+```python
 #main.py
     def _update_bullets(self):
         self.bullets.update()
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
-                
+
         collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
-        
+
         if not self.aliens:
             self.bullets.empty()
             self._create_alien_fleet()
@@ -1031,20 +1022,19 @@ class Settings:
 
 ## Refactoring Bullet alien collision
 
-```python 
+```python
 #main.py
 self._check_bullet_alien_collisions()
-    
-    
+
+
     def _check_bullet_alien_collisions(self):
         collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
-        
+
         if not self.aliens:
             self.bullets.empty()
             self._create_alien_fleet()
 
 ```
-
 
 ## Setting the frame rate to ensure consistency
 
@@ -1059,25 +1049,25 @@ def game_loop(self):
             self.clock.tick(60)
 ```
 
-```python 
+```python
 #main.py
 class Settings:
     def __init__(self) -> None:
         self.screen_width = 1200
         self.screen_height = 800
         self.bg_color = (0, 255, 171)
-        
+
         #ship settings
         self.ship_speed = 6
-        
-        
+
+
         # Bullet settings
         self.bullet_speed = 10
         self.bullet_width = 3
         self.bullet_height = 15
         self.bullet_color = (60, 60, 60)
         self.bullets_allowed = 3
-        
+
         # alien settings
         self.alien_speed = 6.0
         self.alien_direction = 1
@@ -1092,7 +1082,7 @@ class Settings:
         self.check_aliens_edges()
         self.aliens.update()
 
-        # loop thorugh all the aliens and see if they hit the ship     
+        # loop thorugh all the aliens and see if they hit the ship
         for alien in self.aliens:
             if alien.rect.colliderect(self.ship.image_rect):
                 print("Ship hit!")
@@ -1113,15 +1103,15 @@ if TYPE_CHECKING:
 # rename the image rect to only rect
 class Ship:
     def __init__(self, game: Main):
-        
+
         self.moving_right = False
         self.moving_left = False
-        
+
         # get the game object
         self.settings = game.settings
         self.screen = game.screen
         self.screen_rect = game.screen.get_rect()
-        
+
         self.image = pygame.image.load('resources/ship.png')
         self.image = pygame.transform.scale_by(
             self.image,
@@ -1129,18 +1119,18 @@ class Ship:
         )
         self.rect = self.image.get_rect()
         self.rect.midbottom = self.screen_rect.midbottom
-        
+
         self.x = float(self.rect.x)
-        
+
     def update(self):
         if self.moving_right and self.rect.right < self.screen_rect.right:
             self.x += self.settings.ship_speed
-            
+
         if self.moving_left and self.rect.left > 0:
             self.x -= self.settings.ship_speed
-            
+
         self.rect.x = self.x
-        
+
     def blitme(self):
         self.screen.blit(self.image, self.rect)
 ```
@@ -1150,13 +1140,13 @@ class Ship:
 def _create_alien_fleet(self):
         alien = Alien(self)
         ....
-        
+
         ship_height = self.ship.rect.height
         ...
 def _update_aliens(self):
         self.check_aliens_edges()
         self.aliens.update()
-        
+
         if pygame.sprite.spritecollideany(
             self.ship,
             self.aliens
