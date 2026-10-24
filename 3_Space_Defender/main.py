@@ -1,3 +1,4 @@
+from game_stats import Game_Stats
 import pygame
 
 from alien import Alien
@@ -37,6 +38,9 @@ class Main():
         # create the ship
         self.ship = Ship(self)
         self._create_alien_fleet()
+        
+        # game state init
+        self.stats = Game_Stats(self)
         
         self.clock = pygame.time.Clock()
         self.font = pygame.font.SysFont('arial', 48)

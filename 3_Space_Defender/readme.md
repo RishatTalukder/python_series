@@ -1156,3 +1156,48 @@ def _update_aliens(self):
 ```
 
 This may look like a lot of code but in the long run it'll make things lot easier.
+
+
+## Adding game stasts file to keep track of the game
+
+```python
+# game_stats.py
+
+from typing import TYPE_CHECKING
+import pygame
+
+if TYPE_CHECKING:
+    from main import Main
+
+
+class Game_Stats:
+    def __init__(self, game: Main):
+        self.settings = game.settings
+        self.reset_stats()
+        
+    def reset_stats(self):
+        self.ship_left = self.settings.ship_limit
+```
+
+## Adding a count for number of ships left
+
+```python 
+# settings.py
+
+        #ship settings
+        self.ship_speed = 6
+        self.ship_limit = 3
+        
+
+```
+
+## Initialize game stats
+
+```python 
+# main.py
+
+        
+        # game state init
+        self.stats = Game_Stats(self)
+```
+
