@@ -1201,3 +1201,43 @@ class Game_Stats:
         self.stats = Game_Stats(self)
 ```
 
+## Logic for what happends if the ship is hit
+
+```python
+# main.py
+
+    def _update_aliens(self):
+        self.check_aliens_edges()
+        self.aliens.update()
+        
+        if pygame.sprite.spritecollideany(
+            self.ship,
+            self.aliens
+        ):
+            self._ship_hit()
+            
+    def _ship_hit(self):
+        self.stats.ship_left -= 1
+        
+        self.aliens.empty()
+        self.bullets.empty()
+        
+        self._create_alien_fleet()
+        self.ship.center_ship()
+        
+        sleep(0.5)
+```
+
+```python
+# ship.py
+
+        
+    def center_ship(self):
+        self.rect.midbottom = self.screen_rect.midbottom
+        self.x = float(self.rect.x)
+        
+
+```
+
+
+

@@ -1,3 +1,5 @@
+from time import sleep
+
 from game_stats import Game_Stats
 import pygame
 
@@ -115,7 +117,18 @@ class Main():
             self.ship,
             self.aliens
         ):
-            print('ship hit')
+            self._ship_hit()
+            
+    def _ship_hit(self):
+        self.stats.ship_left -= 1
+        
+        self.aliens.empty()
+        self.bullets.empty()
+        
+        self._create_alien_fleet()
+        self.ship.center_ship()
+        
+        sleep(0.5)
 
     def check_aliens_edges(self):
         for alien in self.aliens.sprites():
