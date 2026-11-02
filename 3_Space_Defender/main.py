@@ -61,12 +61,13 @@ class Main():
             # check for events
             self.check_events()
             
-            # update the game
-            self.ship.update()
-            self._update_bullets()
-                    
-            #update the aliens
-            self._update_aliens()
+            if self.stats.game_active:
+                # update the game
+                self.ship.update()
+                self._update_bullets()
+                        
+                #update the aliens
+                self._update_aliens()
             
             # update the screen
             self.update_screen()
@@ -122,15 +123,20 @@ class Main():
         self._check_alien_bottom()
             
     def _ship_hit(self):
-        self.stats.ship_left -= 1
         
-        self.aliens.empty()
-        self.bullets.empty()
-        
-        self._create_alien_fleet()
-        self.ship.center_ship()
-        
-        sleep(0.5)
+        if self.stats.ship_left > 0:
+            self.stats.ship_left -= 1
+            
+            self.aliens.empty()
+            self.bullets.empty()
+            
+            self._create_alien_fleet()
+            self.ship.center_ship()
+            
+            sleep(0.5)
+            
+        else:
+            self.stats.game_active = False
 
     def _check_alien_bottom(self):
         screen_rect = self.screen.get_rect()

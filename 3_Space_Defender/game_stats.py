@@ -8,6 +8,7 @@ if TYPE_CHECKING:
 
 class Game_Stats:
     def __init__(self, game: Main):
+        self.game_active = True
         self.settings = game.settings
         self.reset_stats()
         

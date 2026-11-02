@@ -1269,3 +1269,59 @@ class Game_Stats:
 
 ```
 
+
+# Checking for game ending
+
+```python 
+# game_stats.py
+
+
+    def __init__(self, game: Main):
+        self.game_active = True
+
+```
+
+
+```python 
+# main.py
+    def game_loop(self):
+        # main game loop
+        while True:
+
+            # check for events
+            self.check_events()
+            
+            if self.stats.game_active:
+                # update the game
+                self.ship.update()
+                self._update_bullets()
+                        
+                #update the aliens
+                self._update_aliens()
+            
+            # update the screen
+            self.update_screen()
+            self.clock.tick(60)
+```
+
+```python
+# main.py
+
+    def _ship_hit(self):
+        
+        if self.stats.ship_left > 0:
+            self.stats.ship_left -= 1
+            
+            self.aliens.empty()
+            self.bullets.empty()
+            
+            self._create_alien_fleet()
+            self.ship.center_ship()
+            
+            sleep(0.5)
+            
+        else:
+            self.stats.game_active = False
+
+```
+
