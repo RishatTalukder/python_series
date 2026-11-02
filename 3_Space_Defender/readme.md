@@ -844,7 +844,7 @@ class Main():
 
 ```python
 # main.py
-def _create_alien_fleet(self):
+    def _create_alien_fleet(self):
         alien = Alien(self)
         # assert alien.rect is not None
         alien_width, alien_height = alien.rect.size
@@ -1158,7 +1158,7 @@ def _update_aliens(self):
 This may look like a lot of code but in the long run it'll make things lot easier.
 
 
-## Adding game stasts file to keep track of the game
+## Adding game stats file to keep track of the game
 
 ```python
 # game_stats.py
@@ -1240,4 +1240,32 @@ class Game_Stats:
 ```
 
 
+# Check if the ship touched the bottom
+
+```python
+#main.py
+
+    def _check_alien_bottom(self):
+        screen_rect = self.screen.get_rect()
+        for alien in self.aliens.sprites():
+            if alien.rect.bottom >= screen_rect.bottom:
+                self._ship_hit()
+                break
+
+```
+
+```python
+#main.py
+
+    def _update_aliens(self):
+        ...
+        if pygame.sprite.spritecollideany(
+            self.ship,
+            self.aliens
+        ):
+            self._ship_hit()
+            
+        self._check_alien_bottom()
+
+```
 

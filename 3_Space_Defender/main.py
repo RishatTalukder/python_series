@@ -119,6 +119,8 @@ class Main():
         ):
             self._ship_hit()
             
+        self._check_alien_bottom()
+            
     def _ship_hit(self):
         self.stats.ship_left -= 1
         
@@ -129,6 +131,13 @@ class Main():
         self.ship.center_ship()
         
         sleep(0.5)
+
+    def _check_alien_bottom(self):
+        screen_rect = self.screen.get_rect()
+        for alien in self.aliens.sprites():
+            if alien.rect.bottom >= screen_rect.bottom:
+                self._ship_hit()
+                break
 
     def check_aliens_edges(self):
         for alien in self.aliens.sprites():
