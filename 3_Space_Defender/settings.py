@@ -20,3 +20,20 @@ class Settings:
         self.alien_speed = 6.0
         self.alien_direction = 1
         self.alien_drop_speed = 10
+        
+        self.speed_scale = 1.1
+        
+        self.initialize_dynamic_settings()
+        
+    
+    def initialize_dynamic_settings(self):
+        self.ship_speed = 6
+        self.bullet_speed = 10
+        self.alien_speed = 6
+        
+        self.alien_direction = 1
+        
+    def increase_speed(self):
+        self.ship_speed *= self.speed_scale
+        self.bullet_speed *= self.speed_scale
+        self.alien_speed *= self.speed_scale
