@@ -1399,3 +1399,35 @@ class Main():
 
 ```
 
+## Making the play button clickable
+
+```python
+# main.py
+                
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                self._check_play_button(mouse_pos)
+                    
+                    
+    def _check_play_button(self, mouse_pos):
+        button_clicked = self.play_button.rect.collidepoint(mouse_pos)
+        if button_clicked and not self.stats.game_active:
+            self.stats.reset_stats()
+            self.stats.game_active = True
+            self.aliens.empty()
+            self.bullets.empty()
+            self._create_alien_fleet()
+            self.ship.center_ship()
+            pygame.mouse.set_visible(False)
+```
+
+```python
+# main.py
+    def _ship_hit(self):
+        if self.stats.ship_left > 0:
+            ...
+            
+        else:
+            self.stats.game_active = False
+            pygame.mouse.set_visible(True)
+```
