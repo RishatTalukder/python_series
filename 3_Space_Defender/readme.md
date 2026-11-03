@@ -1325,3 +1325,77 @@ class Game_Stats:
 
 ```
 
+## Adding a play button
+
+```python
+# game_stats.py
+
+class Game_Stats:
+    def __init__(self, game: Main):
+        self.game_active = False
+        self.settings = game.settings
+
+```
+
+```python 
+# button.py
+from typing import TYPE_CHECKING
+
+import pygame
+
+if TYPE_CHECKING:
+    from main import Main
+
+
+class Button:
+    def __init__(self, game : Main, msg):
+        
+        self.screen = game.screen
+        self.screen_rect = game.screen.get_rect()
+        
+        self.width, self.height = 200, 50
+        self.button_color = (255, 169, 123)
+        self.text_color = (255, 255, 255)
+        self.font = pygame.font.SysFont(None, 48)
+        
+        self.rect = pygame.Rect(0, 0, self.width, self.height)
+        self.rect.center = self.screen_rect.center
+        
+        self.prep_msg(msg)
+        
+        
+    def prep_msg(self, msg):
+        self.msg_image = self.font.render(msg, True, self.text_color, self.button_color)
+        self.msg_image_rect = self.msg_image.get_rect()
+        self.msg_image_rect.center = self.rect.center
+        
+    def draw_button(self):
+        self.screen.fill(self.button_color, self.rect)
+        self.screen.blit(self.msg_image, self.msg_image_rect)
+
+```
+
+```python 
+# main.py
+
+
+class Main():
+    def __init__(self):
+        ....
+
+        self.play_button = Button(self, "Play")
+        
+        self.clock = pygame.time.Clock()
+        self.font = pygame.font.SysFont('arial', 48)
+
+    def update_screen(self):
+        
+        ....
+        
+        if not self.stats.game_active:
+            self.play_button.draw_button()
+        
+        pygame.display.flip()
+
+```
+

@@ -1,5 +1,6 @@
 from time import sleep
 
+from button import Button
 from game_stats import Game_Stats
 import pygame
 
@@ -43,6 +44,7 @@ class Main():
         
         # game state init
         self.stats = Game_Stats(self)
+        self.play_button = Button(self, "Play")
         
         self.clock = pygame.time.Clock()
         self.font = pygame.font.SysFont('arial', 48)
@@ -74,6 +76,7 @@ class Main():
             self.clock.tick(60)
             
     def update_screen(self):
+            
         self.screen.fill(self.settings.bg_color)
         self.display_fps()
         self.ship.blitme()
@@ -81,6 +84,9 @@ class Main():
             bullet.draw_bullet()
             
         self.aliens.draw(self.screen)
+        
+        if not self.stats.game_active:
+            self.play_button.draw_button()
         
         pygame.display.flip()
         
