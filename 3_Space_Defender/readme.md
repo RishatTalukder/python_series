@@ -1638,3 +1638,75 @@ class Game_Stats:
             self.scoreboard.check_high_score()
 
 ```
+
+## Displaying the level
+
+```python
+#scoreboard.py
+import pygame
+from typing import TYPE_CHECKING
+
+
+if TYPE_CHECKING:
+    from main import Main
+
+
+class ScoreBoard:
+    
+    def __init__(self, game: Main):
+        ...
+        self.prep_score()
+        self.prep_high_score()
+        self.prep_level()
+        # self.prep_ships()
+        
+    def prep_level(self):
+        level_str = f"Level: {self.stats.level}"
+        
+        self.level_image = self.font.render(level_str, True, self.text_color)
+        self.level_rect = self.level_image.get_rect()
+        
+        self.level_rect.right = self.score_rect.right
+        self.level_rect.top = self.score_rect.bottom + 10
+        
+    def show_score(self):
+        self.screen.blit(self.score_image, self.score_rect)
+        self.screen.blit(self.high_score_image, self.high_score_rect)
+        self.screen.blit(self.level_image, self.level_rect)
+```
+
+```python
+# game_stats.py
+
+class Game_Stats:
+    def __init__(self, game: Main):
+        ...
+        
+    def reset_stats(self):
+        self.ship_left = self.settings.ship_limit
+        self.score = 0
+        self.level = 1
+```
+
+```python 
+#main.py
+    def _check_bullet_alien_collisions(self):
+        ...
+        
+        if not self.aliens:
+            self.bullets.empty()
+            self._create_alien_fleet()
+            self.settings.increase_speed()
+            self.stats.level += 1
+            self.scoreboard.prep_level()
+                        
+    def _check_play_button(self, mouse_pos):
+        button_clicked = self.play_button.rect.collidepoint(mouse_pos)
+        if button_clicked and not self.stats.game_active:
+            ...
+            self.scoreboard.prep_score()
+            self.scoreboard.prep_level()
+            ...
+
+```
+

@@ -187,6 +187,8 @@ class Main():
             self.bullets.empty()
             self._create_alien_fleet()
             self.settings.increase_speed()
+            self.stats.level += 1
+            self.scoreboard.prep_level()
     
     def check_events(self):
         for event in pygame.event.get():
@@ -211,6 +213,7 @@ class Main():
             self.stats.reset_stats()
             self.stats.game_active = True
             self.scoreboard.prep_score()
+            self.scoreboard.prep_level()
             self.aliens.empty()
             self.bullets.empty()
             self._create_alien_fleet()
