@@ -134,6 +134,7 @@ class Main():
     def _ship_hit(self):
         if self.stats.ship_left > 0:
             self.stats.ship_left -= 1
+            self.scoreboard.prep_ships()
             
             self.aliens.empty()
             self.bullets.empty()
@@ -214,6 +215,7 @@ class Main():
             self.stats.game_active = True
             self.scoreboard.prep_score()
             self.scoreboard.prep_level()
+            self.scoreboard.prep_ships()
             self.aliens.empty()
             self.bullets.empty()
             self._create_alien_fleet()

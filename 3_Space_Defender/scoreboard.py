@@ -1,14 +1,17 @@
 import pygame
 from typing import TYPE_CHECKING
-
+from ship import Ship
+from pygame.sprite import Group
 
 if TYPE_CHECKING:
     from main import Main
 
 
+
 class ScoreBoard:
     
     def __init__(self, game: Main):
+        self.game = game
         self.screen = game.screen
         self.screen_rect = game.screen.get_rect()
         self.settings = game.settings
@@ -20,7 +23,16 @@ class ScoreBoard:
         self.prep_score()
         self.prep_high_score()
         self.prep_level()
-        # self.prep_ships()
+        self.prep_ships()
+        
+    def prep_ships(self):
+        self.ships = Group()
+        
+        for ship_number in range(self.stats.ship_left):
+            ship = Ship(self.game)
+            ship.rect.x = 10 + ship_number * ship.rect.width
+            ship.rect.y = 10
+            self.ships.add(ship)
         
     def prep_level(self):
         level_str = f"Level: {self.stats.level}"
@@ -55,6 +67,8 @@ class ScoreBoard:
         self.screen.blit(self.score_image, self.score_rect)
         self.screen.blit(self.high_score_image, self.high_score_rect)
         self.screen.blit(self.level_image, self.level_rect)
+        
+        self.ships.draw(self.screen)
         
     def check_high_score(self):
         if self.stats.score > self.stats.high_score:

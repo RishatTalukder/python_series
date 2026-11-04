@@ -1710,3 +1710,51 @@ class Game_Stats:
 
 ```
 
+
+## Displaying number of ships left
+
+```python 
+# ship.py
+...
+class Ship(Sprite):
+    def __init__(self, game: Main):
+        super().__init__()
+        ...
+
+```
+
+```python
+# scoreboard.py
+
+import pygame
+from typing import TYPE_CHECKING
+from ship import Ship
+from pygame.sprite import Group
+
+if TYPE_CHECKING:
+    from main import Main
+
+class ScoreBoard:
+    
+    def __init__(self, game: Main):
+        self.game = game
+        ...
+        self.prep_score()
+        self.prep_high_score()
+        self.prep_level()
+        self.prep_ships()
+        
+    def prep_ships(self):
+        self.ships = Group()
+        
+        for ship_number in range(self.stats.ship_left):
+            ship = Ship(self.game)
+            ship.rect.x = 10 + ship_number * ship.rect.width
+            ship.rect.y = 10
+            self.ships.add(ship)
+        
+    def show_score(self):
+        ...
+        self.ships.draw(self.screen)
+
+```

@@ -1,13 +1,15 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
 import pygame
+from pygame.sprite import Sprite
 
 if TYPE_CHECKING:
     from main import Main
 
 
-class Ship:
+class Ship(Sprite):
     def __init__(self, game: Main):
+        super().__init__()
         
         self.moving_right = False
         self.moving_left = False
@@ -20,7 +22,7 @@ class Ship:
         self.image = pygame.image.load('resources/ship.png')
         self.image = pygame.transform.scale_by(
             self.image,
-            0.2
+            0.1
         )
         self.rect = self.image.get_rect()
         self.rect.midbottom = self.screen_rect.midbottom
