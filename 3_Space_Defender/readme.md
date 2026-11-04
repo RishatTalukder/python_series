@@ -1574,3 +1574,67 @@ class Main():
         ...
 
 ```
+
+# Showing High score
+
+```python
+#main.py
+import pygame
+from typing import TYPE_CHECKING
+
+
+if TYPE_CHECKING:
+    from main import Main
+
+class ScoreBoard:
+    
+    def __init__(self, game: Main):
+        ...
+        self.prep_score()
+        self.prep_high_score()
+        # self.prep_level()
+        # self.prep_ships()
+    
+    def prep_high_score(self):
+        high_score = int(round(self.stats.high_score, -1))
+        high_score_str = f"High Score: {high_score : ,}"
+        
+        self.high_score_image = self.font.render(high_score_str, True, self.text_color)
+        self.high_score_rect = self.high_score_image.get_rect()
+        
+        self.high_score_rect.centerx = self.screen_rect.centerx
+        self.high_score_rect.top = self.score_rect.top
+    
+    ...
+
+    def show_score(self):
+        self.screen.blit(self.score_image, self.score_rect)
+        self.screen.blit(self.high_score_image, self.high_score_rect)
+        
+    def check_high_score(self):
+        if self.stats.score > self.stats.high_score:
+            self.stats.high_score = self.stats.score
+            self.prep_high_score()
+```
+
+```python
+# game_stats.py
+class Game_Stats:
+    def __init__(self, game: Main):
+        self.game_active = False
+        self.settings = game.settings
+        self.high_score = 0
+        self.reset_stats()
+```
+
+```python 
+# main.py
+    def _check_bullet_alien_collisions(self):
+        collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
+        
+        if collisions:
+            ...
+            self.scoreboard.prep_score()
+            self.scoreboard.check_high_score()
+
+```
