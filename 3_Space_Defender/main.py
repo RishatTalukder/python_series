@@ -5,6 +5,7 @@ from game_stats import Game_Stats
 import pygame
 
 from alien import Alien
+from scoreboard import ScoreBoard
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
@@ -45,6 +46,7 @@ class Main():
         # game state init
         self.stats = Game_Stats(self)
         self.play_button = Button(self, "Play")
+        self.scoreboard = ScoreBoard(self)
         
         self.clock = pygame.time.Clock()
         self.font = pygame.font.SysFont('arial', 48)
@@ -84,6 +86,7 @@ class Main():
             bullet.draw_bullet()
             
         self.aliens.draw(self.screen)
+        self.scoreboard.show_score()
         
         if not self.stats.game_active:
             self.play_button.draw_button()

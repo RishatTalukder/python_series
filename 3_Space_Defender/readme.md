@@ -1431,3 +1431,72 @@ class Main():
             self.stats.game_active = False
             pygame.mouse.set_visible(True)
 ```
+
+## Showing score
+
+```python
+# game_stats.py
+    def reset_stats(self):
+        self.ship_left = self.settings.ship_limit
+        self.score = 0
+```
+
+```python
+# scoreboard.py
+import pygame
+from typing import TYPE_CHECKING
+
+
+if TYPE_CHECKING:
+    from main import Main
+
+
+class ScoreBoard:
+    
+    def __init__(self, game: Main):
+        self.screen = game.screen
+        self.screen_rect = game.screen.get_rect()
+        self.settings = game.settings
+        self.stats = game.stats
+        
+        self.text_color = (30, 30,30)
+        self.font = pygame.font.SysFont(None, 48)
+        
+        self.prep_score()
+        
+    def prep_score(self):
+        score_str  = f"Score: {self.stats.score}"
+        
+        self.score_image = self.font.render(score_str, True, self.text_color)
+        self.score_rect = self.score_image.get_rect()
+        self.score_rect.right = self.screen_rect.right - 20
+        self.score_rect.top = 20
+        
+    def show_score(self):
+        self.screen.blit(self.score_image, self.score_rect)
+
+```
+
+```python
+# main.py
+from time import sleep
+
+from button import Button
+from game_stats import Game_Stats
+import pygame
+
+from alien import Alien
+from scoreboard import ScoreBoard
+
+class Main():
+    def __init__(self):
+        ...
+        self.play_button = Button(self, "Play")
+        self.scoreboard = ScoreBoard(self)
+                   
+    def update_screen(self):
+            ...
+        self.aliens.draw(self.screen)
+        self.scoreboard.show_score()
+```
+
