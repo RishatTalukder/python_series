@@ -1500,3 +1500,40 @@ class Main():
         self.scoreboard.show_score()
 ```
 
+# Scoring machanism
+
+```python 
+# setting.py
+        
+    
+    def initialize_dynamic_settings(self):
+        ...
+        self.alien_speed = 6
+        self.alien_points = 50
+        
+        self.alien_direction = 1
+
+```
+
+```python
+# main.py
+    def _check_bullet_alien_collisions(self):
+
+        ...
+        if collisions:
+            self.stats.score += self.settings.alien_points
+            self.scoreboard.prep_score()                
+                    
+    def _check_play_button(self, mouse_pos):
+        ...
+        if button_clicked and not self.stats.game_active:
+            ...
+            self.stats.game_active = True
+    
+            self.scoreboard.prep_score()
+    
+            self.aliens.empty()
+            self.bullets.empty()
+
+```
+

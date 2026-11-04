@@ -30,6 +30,7 @@ class Settings:
         self.ship_speed = 6
         self.bullet_speed = 10
         self.alien_speed = 6
+        self.alien_points = 50
         
         self.alien_direction = 1
         

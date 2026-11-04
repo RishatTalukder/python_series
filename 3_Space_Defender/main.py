@@ -177,6 +177,10 @@ class Main():
     def _check_bullet_alien_collisions(self):
         collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
         
+        if collisions:
+            self.stats.score += self.settings.alien_points
+            self.scoreboard.prep_score()
+        
         if not self.aliens:
             self.bullets.empty()
             self._create_alien_fleet()
@@ -204,6 +208,7 @@ class Main():
             self.settings.initialize_dynamic_settings()
             self.stats.reset_stats()
             self.stats.game_active = True
+            self.scoreboard.prep_score()
             self.aliens.empty()
             self.bullets.empty()
             self._create_alien_fleet()
