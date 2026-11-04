@@ -1537,3 +1537,40 @@ class Main():
 
 ```
 
+## Detecting all the collision and added a level point system
+
+```python
+# main.py
+    def _check_bullet_alien_collisions(self):
+        ...
+        if collisions:
+            for alines in collisions.values():
+                self.stats.score += self.settings.alien_points * len(alines)
+            self.scoreboard.prep_score()
+        
+        ...
+```
+
+```python 
+# settings.py
+        ...
+        self.speed_scale = 1.1
+        self.score_scale = 1.5
+        
+        self.initialize_dynamic_settings()
+
+        ... 
+        
+    def increase_speed(self):
+        ...
+        self.alien_points = int(self.alien_points * self.score_scale)
+```
+
+```python 
+# scoreboard.py
+    def prep_score(self):
+        rounded_score = int(round(self.stats.score, -1))
+        score_str  = f"Score: {self.stats.score : ,}"
+        ...
+
+```

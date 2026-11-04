@@ -24,7 +24,8 @@ class ScoreBoard:
         
         
     def prep_score(self):
-        score_str  = f"Score: {self.stats.score}"
+        rounded_score = int(round(self.stats.score, -1))
+        score_str  = f"Score: {self.stats.score : ,}"
         
         self.score_image = self.font.render(score_str, True, self.text_color)
         self.score_rect = self.score_image.get_rect()
