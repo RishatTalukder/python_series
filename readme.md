@@ -8,7 +8,7 @@
 [![Pygame](https://img.shields.io/badge/Pygame-CE%20%2F%202.x-00B4D8?style=for-the-badge&logo=gamepad&logoColor=white)](https://pyga.me/)
 [![Tkinter](https://img.shields.io/badge/GUI-Tkinter%20%2F%20ttk-FF6B6B?style=for-the-badge&logo=window-restore&logoColor=white)](https://docs.python.org/3/library/tkinter.html)
 [![Packaging](https://img.shields.io/badge/Packaging-pyproject.toml%20%7C%20uv-4CAF50?style=for-the-badge&logo=pypi&logoColor=white)](https://peps.python.org/pep-0621/)
-[![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge)]()
+[![Status](https://img.shields.io/badge/Status-Inactive-lightgrey?style=for-the-badge)]()
 
 [Explore Lessons](#1-1_basics--the-foundations) • [Password Generator](#2-2_password_generator--cli-utility) • [Space Defender](#3-3_space_defender--2d-arcade-game) • [Note Keeper](#4-4_note_keeper--desktop-gui-app) • [Quick Start](#-quick-start)
 
